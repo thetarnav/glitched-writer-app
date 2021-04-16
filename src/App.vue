@@ -1,12 +1,19 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
 import Navbar from './components/nav/Navbar.vue'
+import Aside from './components/aside/Aside.vue'
 import { useStore } from './store'
 
 export default defineComponent({
 	name: 'App',
+	data() {
+		return {
+			aside: '',
+		}
+	},
 	components: {
 		Navbar,
+		Aside,
 	},
 	setup() {
 		const store = useStore()
@@ -20,39 +27,45 @@ export default defineComponent({
 </script>
 
 <template>
-	<header>
-		<div class="logo">
-			<inline-svg :src="`./svg/logo.svg`" class="w-6" />
-			<h6>Glitched Writer</h6>
-		</div>
-		<Navbar />
-		<div class="right-placeholder lg:w-64">
-			<div class="quick-links">
-				<a
-					href="https://github.com/thetarnav/glitched-writer"
-					target="_blank"
-				>
-					<inline-svg :src="`./svg/github.svg`" />
-				</a>
-				<a
-					href="https://www.npmjs.com/package/glitched-writer"
-					target="_blank"
-				>
-					<inline-svg :src="`./svg/npm.svg`" class="npm" />
-				</a>
+	<div class="app">
+		<header>
+			<!-- Logo -->
+			<div class="logo">
+				<inline-svg :src="`./svg/logo.svg`" class="w-6" />
+				<h6>Glitched Writer</h6>
 			</div>
-		</div>
-	</header>
-	<main class="middle-wrapper">
-		<!-- Aside Panel -->
-		<!-- Text Canvas -->
-	</main>
+			<!-- Navigation -->
+			<Navbar />
+			<!-- Quick Icon Links -->
+			<div class="right-placeholder lg:w-64">
+				<div class="quick-links">
+					<a
+						href="https://github.com/thetarnav/glitched-writer"
+						target="_blank"
+					>
+						<inline-svg :src="`./svg/github.svg`" />
+					</a>
+					<a
+						href="https://www.npmjs.com/package/glitched-writer"
+						target="_blank"
+					>
+						<inline-svg :src="`./svg/npm.svg`" class="npm" />
+					</a>
+				</div>
+			</div>
+		</header>
+		<main class="middle-wrapper">
+			<!-- Aside Panel -->
+			<Aside v-if="aside" />
+			<!-- Text Canvas -->
+		</main>
+	</div>
 </template>
 
 <style src="./assets/scss/base.scss" lang="scss" />
 
 <style lang="scss" scoped>
-#app {
+.app {
 	@apply flex flex-col w-screen h-screen;
 }
 
@@ -75,10 +88,13 @@ header {
 }
 
 .navbar {
-	@apply w-full fixed left-0 bottom-0;
+	@apply w-full h-16 fixed z-50 left-0 bottom-0;
 	@apply md:static md:w-auto;
 }
 .middle-wrapper {
 	@apply w-full relative flex-grow;
+}
+.aside {
+	@apply fixed inset-0 mb-16 bg-gray-100;
 }
 </style>

@@ -11,7 +11,7 @@ export default defineComponent({
 	},
 	methods: {
 		isActive(name: string) {
-			console.log(name)
+			// console.log(name)
 		},
 	},
 	components: {

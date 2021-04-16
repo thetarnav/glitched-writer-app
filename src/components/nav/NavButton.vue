@@ -37,7 +37,7 @@ export default defineComponent({
 	}
 }
 .icon {
-	@apply w-6 md:w-5;
+	@apply w-5 md:w-5;
 }
 .text {
 	@apply text-sm font-medium;

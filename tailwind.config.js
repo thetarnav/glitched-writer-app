@@ -8,7 +8,12 @@ module.exports = {
 	darkMode: false, // or 'media' or 'class'
 	theme: {
 		extend: {
-			gray: colors.trueGray,
+			colors: {
+				gray: colors.trueGray,
+			},
+			spacing: {
+				18: '4.5rem',
+			},
 		},
 	},
 	variants: {
