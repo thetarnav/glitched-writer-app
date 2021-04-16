@@ -5,6 +5,7 @@ module.exports = {
 		node: true,
 	},
 	extends: [
+		'@vue/eslint-config-typescript',
 		'plugin:prettier/recommended',
 		'plugin:vue/vue3-essential',
 		'eslint:recommended',
