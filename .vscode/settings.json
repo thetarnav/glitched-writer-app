@@ -3,7 +3,10 @@
 	"less.validate": false,
 	"scss.validate": false,
 	"vetur.validation.style": false,
+	"vetur.experimental.templateInterpolationService": true,
 	"cSpell.words": [
-		"Vite"
-	]
+		"Vite",
+		"vuedx"
+	],
+	"typescript.tsdk": "node_modules\\typescript\\lib"
 }
