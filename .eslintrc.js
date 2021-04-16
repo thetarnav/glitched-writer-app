@@ -79,7 +79,7 @@ module.exports = {
 		'no-useless-escape': 'warn',
 		'object-shorthand': 'warn',
 		'no-multiple-empty-lines': 'off',
-		'padded-blocks': 'warn',
+		'padded-blocks': 'off',
 		'no-mixed-operators': 'off',
 		'@typescript-eslint/member-delimiter-style': 'off',
 		// '@typescript-eslint/camelcase': 'warn',
