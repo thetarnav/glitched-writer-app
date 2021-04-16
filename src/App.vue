@@ -1,13 +1,16 @@
-<template>Hello World</template>
+<template>
+	<Navbar />
+	Hello World
+</template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-// import HelloWorld from './components/HelloWorld.vue'
+import Navbar from './components/Navbar.vue'
 
 export default defineComponent({
 	name: 'App',
 	components: {
-		// HelloWorld,
+		Navbar,
 	},
 })
 </script>
