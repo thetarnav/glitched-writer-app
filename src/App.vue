@@ -7,22 +7,18 @@ import { useStore } from './store'
 export default defineComponent({
 	name: 'App',
 	data() {
-		return {
-			aside: '',
-		}
+		return {}
+	},
+	computed: {
+		isTabOpen(): boolean {
+			return this.$store.getters.isTabOpen()
+		},
 	},
 	components: {
 		Navbar,
 		Aside,
 	},
-	setup() {
-		const store = useStore()
-
-		return {
-			increment: () => store.commit('increment'),
-			count: computed(() => store.state.count),
-		}
-	},
+	setup() {},
 })
 </script>
 
@@ -56,9 +52,12 @@ export default defineComponent({
 		</header>
 		<main class="middle-wrapper">
 			<!-- Aside Panel -->
-			<Aside v-if="aside" />
+			<Aside v-if="isTabOpen" />
 			<!-- Text Canvas -->
 		</main>
+		<div class="fixed left-5 bottom-5 hidden md:block">
+			glitched-writer@2.0.22
+		</div>
 	</div>
 </template>
 
@@ -89,12 +88,14 @@ header {
 
 .navbar {
 	@apply w-full h-16 fixed z-50 left-0 bottom-0;
-	@apply md:static md:w-auto;
+	@apply md:static md:w-auto md:h-auto;
 }
 .middle-wrapper {
 	@apply w-full relative flex-grow;
 }
 .aside {
-	@apply fixed inset-0 mb-16 bg-gray-100;
+	@apply absolute z-10 inset-0 mb-16 bg-gray-100;
+	@apply md:mb-0;
+	@apply lg:right-auto lg:w-1/2;
 }
 </style>

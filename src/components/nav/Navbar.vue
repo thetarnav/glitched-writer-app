@@ -1,13 +1,18 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { useStore } from '../../store'
+import { Tab } from '../../types'
 import NavButton from './NavButton.vue'
 
 export default defineComponent({
 	name: 'Navbar',
 	data() {
-		return {
-			tabs: ['options', 'presets', 'queue', 'about'],
-		}
+		return {}
+	},
+	computed: {
+		tabs(): Tab[] {
+			return this.$store.state.tabs
+		},
 	},
 	methods: {
 		isActive(name: string) {
@@ -17,7 +22,11 @@ export default defineComponent({
 	components: {
 		NavButton,
 	},
-	setup() {},
+	setup() {
+		const store = useStore()
+
+		return {}
+	},
 })
 </script>
 

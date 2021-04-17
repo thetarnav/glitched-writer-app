@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 html {
-	font-size: 1.125rem;
+	font-size: 1.125rem; // 18px //
 }
 body {
 	@apply bg-white overflow-hidden h-screen w-screen;

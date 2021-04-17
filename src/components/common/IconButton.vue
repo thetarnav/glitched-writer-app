@@ -22,9 +22,10 @@ export default defineComponent({
 <style lang="scss">
 .icon-button {
 	@apply w-12 h-12 flex bg-white text-gray-700 rounded-full border border-gray-200;
+	@apply md:w-10 md:h-10;
 
 	svg {
-		@apply m-auto;
+		@apply m-auto md:w-5;
 	}
 }
 </style>
