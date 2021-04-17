@@ -98,7 +98,7 @@ header {
 	@apply w-full relative flex-grow;
 }
 .aside {
-	@apply absolute z-10 inset-0 mb-16 bg-gray-100;
+	@apply absolute z-10 inset-0 mb-16;
 	@apply md:mb-0;
 	@apply lg:right-auto lg:w-1/2;
 }

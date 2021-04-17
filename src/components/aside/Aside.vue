@@ -7,14 +7,6 @@ export default defineComponent({
 	data() {
 		return {}
 	},
-	computed: {
-		// capitalName(): string {
-		// 	return this.$store.getters.openTabCapital
-		// },
-		// tabActions():TabAction[] {
-		// 	return this.$store.getters.tabActions
-		// }
-	},
 	methods: {
 		closeTab() {
 			this.$store.commit('setTab', -1)
@@ -33,9 +25,7 @@ export default defineComponent({
 
 <template>
 	<aside class="aside">
-		<header>
-			<h3>{{ capitalName }}</h3>
-		</header>
+		<!-- Action Buttons -->
 		<div class="action-buttons">
 			<IconButton
 				icon="reload"
@@ -45,13 +35,32 @@ export default defineComponent({
 			<IconButton icon="copy" class="copy" v-if="tabActions.has('copy')" />
 			<IconButton icon="close" class="close" @click="closeTab" />
 		</div>
+		<!-- Headder -->
+		<header>
+			<h3>{{ capitalName }}</h3>
+		</header>
+		<!-- Content -->
+		<div class="content-wrapper">
+			<div class="content">
+				<div class="input" v-for="n in 12" :key="n"></div>
+				<!-- Ending Text -->
+				<div class="ending-text">
+					<span> Like Glitched Writer? Give it a Star! </span>
+				</div>
+			</div>
+		</div>
 	</aside>
 </template>
 
 <style lang="scss" scoped>
+.aside {
+	@apply bg-gray-100 flex flex-col;
+}
+
 header {
 	@apply p-5;
 }
+
 .action-buttons {
 	@apply fixed right-0 bottom-16 m-3 flex space-x-2;
 	@apply md:absolute md:bottom-auto md:top-0;
@@ -59,5 +68,16 @@ header {
 	.copy {
 		@apply hidden md:block;
 	}
+}
+
+.content {
+	@apply flex flex-col space-y-4 px-5 pb-12;
+
+	&-wrapper {
+		@apply overflow-y-scroll;
+	}
+}
+.input {
+	@apply h-10 bg-white rounded-md border border-gray-200;
 }
 </style>
