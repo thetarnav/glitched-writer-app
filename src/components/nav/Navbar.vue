@@ -14,11 +14,6 @@ export default defineComponent({
 			return this.$store.state.tabs
 		},
 	},
-	methods: {
-		isActive(name: string) {
-			// console.log(name)
-		},
-	},
 	components: {
 		NavButton,
 	},
@@ -32,12 +27,7 @@ export default defineComponent({
 
 <template>
 	<nav class="navbar">
-		<NavButton
-			v-for="tab in tabs"
-			:key="tab"
-			:active="isActive(tab)"
-			:name="tab"
-		/>
+		<NavButton v-for="tab in tabs" :key="tab" :name="tab" />
 	</nav>
 </template>
 

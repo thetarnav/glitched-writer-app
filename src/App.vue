@@ -3,6 +3,7 @@ import { computed, defineComponent } from 'vue'
 import Navbar from './components/nav/Navbar.vue'
 import Aside from './components/aside/Aside.vue'
 import { useStore } from './store'
+import { Tab } from './types'
 
 export default defineComponent({
 	name: 'App',
@@ -12,6 +13,9 @@ export default defineComponent({
 	computed: {
 		isTabOpen(): boolean {
 			return this.$store.getters.isTabOpen()
+		},
+		openTabName(): Tab | null {
+			return this.$store.getters.openTabName
 		},
 	},
 	components: {
@@ -52,7 +56,7 @@ export default defineComponent({
 		</header>
 		<main class="middle-wrapper">
 			<!-- Aside Panel -->
-			<Aside v-if="isTabOpen" />
+			<Aside v-if="isTabOpen" :key="openTabName" />
 			<!-- Text Canvas -->
 		</main>
 		<div class="fixed left-5 bottom-5 hidden md:block">
@@ -76,7 +80,7 @@ header {
 }
 .quick-links {
 	@apply flex space-x-2 md:space-x-3 justify-end;
-	@apply lg:fixed right-6 bottom-6;
+	@apply lg:fixed z-10 right-6 bottom-6;
 
 	svg {
 		@apply w-6 text-gray-600;
