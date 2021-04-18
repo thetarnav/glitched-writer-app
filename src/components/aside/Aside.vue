@@ -1,14 +1,16 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineAsyncComponent, defineComponent } from 'vue'
 import { useStore, Getters } from '../../store'
 import EndingText from './EndingText.vue'
-import Options from './Options.vue'
+const Options = defineAsyncComponent(() => import('./Options.vue'))
+const Queue = defineAsyncComponent(() => import('./Queue.vue'))
 
 export default defineComponent({
 	name: 'Aside',
 	components: {
 		EndingText,
 		Options,
+		Queue,
 	},
 	data() {
 		return {}
@@ -24,6 +26,7 @@ export default defineComponent({
 		return {
 			capitalName: store.getters.openTabCapital as Getters['openTabCapital'],
 			tabActions: store.getters.tabActions as Getters['tabActions'],
+			tabName: store.getters.openTabName as Getters['openTabName'],
 		}
 	},
 })
@@ -49,7 +52,8 @@ export default defineComponent({
 		<div class="content-wrapper">
 			<div class="content">
 				<!-- <div class="input" v-for="n in 12" :key="n"></div> -->
-				<Options />
+				<Options v-if="tabName === 'options'" />
+				<Queue v-else-if="tabName === 'queue'" />
 				<!-- Ending Text -->
 				<EndingText />
 			</div>
