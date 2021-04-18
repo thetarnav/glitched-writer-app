@@ -2,6 +2,10 @@
   "name": "glitched-writer-website",
   "version": "0.0.0",
   "author": "Damian Tarnawski @thetarnav <gthetatnav@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thetarnav/glitched-writer-app.git"
+  },
   "scripts": {
     "serve": "vite preview",
     "build": "vue-tsc --noEmit && vite build",
@@ -11,6 +15,7 @@
   "dependencies": {
     "lodash.startcase": "^4.4.0",
     "vue": "^3.0.5",
+    "vue-glitched-writer": "^1.1.0",
     "vue-inline-svg": "^3.0.0-beta.2",
     "vue-window-size": "^1.1.1",
     "vuex": "^4.0.0"

@@ -1,6 +1,7 @@
 <script lang="ts">
 import { computed, defineAsyncComponent, defineComponent } from 'vue'
 import Navbar from './components/nav/Navbar.vue'
+import TextCanvas from './components/TextCanvas.vue'
 const Aside = defineAsyncComponent(() => import('./components/aside/Aside.vue'))
 import { Tab } from './types'
 
@@ -9,6 +10,7 @@ export default defineComponent({
 	components: {
 		Navbar,
 		Aside,
+		TextCanvas,
 	},
 	data() {
 		return {}
@@ -57,6 +59,7 @@ export default defineComponent({
 			<!-- Aside Panel -->
 			<Aside v-if="isTabOpen" :key="openTabName" />
 			<!-- Text Canvas -->
+			<TextCanvas />
 		</main>
 		<div class="fixed left-5 bottom-5 hidden md:block">
 			glitched-writer@2.0.22
