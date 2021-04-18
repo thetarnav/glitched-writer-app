@@ -1,9 +1,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { useStore, Getters } from '../../store'
+import EndingText from './EndingText.vue'
 
 export default defineComponent({
 	name: 'Aside',
+	components: {
+		EndingText,
+	},
 	data() {
 		return {}
 	},
@@ -44,9 +48,7 @@ export default defineComponent({
 			<div class="content">
 				<div class="input" v-for="n in 12" :key="n"></div>
 				<!-- Ending Text -->
-				<div class="ending-text">
-					<span> Like Glitched Writer? Give it a Star! </span>
-				</div>
+				<EndingText />
 			</div>
 		</div>
 	</aside>

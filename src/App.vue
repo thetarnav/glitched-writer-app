@@ -1,12 +1,15 @@
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineAsyncComponent, defineComponent } from 'vue'
 import Navbar from './components/nav/Navbar.vue'
-import Aside from './components/aside/Aside.vue'
-import { useStore } from './store'
+const Aside = defineAsyncComponent(() => import('./components/aside/Aside.vue'))
 import { Tab } from './types'
 
 export default defineComponent({
 	name: 'App',
+	components: {
+		Navbar,
+		Aside,
+	},
 	data() {
 		return {}
 	},
@@ -17,10 +20,6 @@ export default defineComponent({
 		openTabName(): Tab | null {
 			return this.$store.getters.openTabName
 		},
-	},
-	components: {
-		Navbar,
-		Aside,
 	},
 	setup() {},
 })
