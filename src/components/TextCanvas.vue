@@ -1,6 +1,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import GlitchedWriter from 'vue-glitched-writer'
+import useOptions from '../state/options'
 
 export default defineComponent({
 	components: {
@@ -11,14 +12,18 @@ export default defineComponent({
 			return this.$store.getters.isTabOpen()
 		},
 	},
-	setup() {},
+	setup() {
+		const { options } = useOptions()
+
+		return { options }
+	},
 })
 </script>
 
 <template>
 	<figure class="text-canvas" :class="{ 'tab-open': isTabOpen }">
 		<h1>
-			<GlitchedWriter text="Hello World" appear />
+			<GlitchedWriter text="Hello World" appear :options="options" />
 		</h1>
 	</figure>
 </template>

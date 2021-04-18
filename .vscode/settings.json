@@ -6,6 +6,7 @@
 	"vetur.experimental.templateInterpolationService": true,
 	"cSpell.words": [
 		"Vite",
+		"letterize",
 		"vuedx"
 	],
 	"typescript.tsdk": "node_modules\\typescript\\lib"

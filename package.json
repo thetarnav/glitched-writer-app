@@ -13,6 +13,7 @@
     "dev": "vite"
   },
   "dependencies": {
+    "glitched-writer": "^2.0.22",
     "lodash.startcase": "^4.4.0",
     "vue": "^3.0.5",
     "vue-glitched-writer": "^1.1.0",

@@ -2,11 +2,13 @@
 import { defineComponent } from 'vue'
 import { useStore, Getters } from '../../store'
 import EndingText from './EndingText.vue'
+import Options from './Options.vue'
 
 export default defineComponent({
 	name: 'Aside',
 	components: {
 		EndingText,
+		Options,
 	},
 	data() {
 		return {}
@@ -46,7 +48,8 @@ export default defineComponent({
 		<!-- Content -->
 		<div class="content-wrapper">
 			<div class="content">
-				<div class="input" v-for="n in 12" :key="n"></div>
+				<!-- <div class="input" v-for="n in 12" :key="n"></div> -->
+				<Options />
 				<!-- Ending Text -->
 				<EndingText />
 			</div>
@@ -73,13 +76,10 @@ header {
 }
 
 .content {
-	@apply flex flex-col space-y-4 px-5 pb-12;
+	@apply flex flex-col space-y-4 px-5 pb-12 overflow-hidden;
 
 	&-wrapper {
 		@apply overflow-y-scroll;
 	}
-}
-.input {
-	@apply h-10 bg-white rounded-md border border-gray-200;
 }
 </style>
