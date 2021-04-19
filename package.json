@@ -8,8 +8,7 @@
   },
   "scripts": {
     "serve": "vite preview",
-    "build": "vue-tsc --noEmit && vite build",
-    "lint": "vue-cli-service lint",
+    "build": "vite build",
     "dev": "vite"
   },
   "dependencies": {
