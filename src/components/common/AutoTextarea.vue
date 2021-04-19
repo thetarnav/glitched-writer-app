@@ -1,5 +1,10 @@
 <template>
-	<textarea :style="computedStyles" v-model="val" @focus="resize"></textarea>
+	<textarea
+		:style="computedStyles"
+		v-model="val"
+		@focus="resize"
+		rows="1"
+	></textarea>
 </template>
 <script>
 export default {
@@ -112,7 +117,7 @@ export default {
 		this.val = this.modelValue
 	},
 	mounted() {
-		this.resize()
+		this.$nextTick(() => this.resize())
 	},
 }
 </script>

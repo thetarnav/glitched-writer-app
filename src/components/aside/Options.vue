@@ -4,6 +4,11 @@ import useOptions, { inputDetails } from '../../state/options'
 import { InputType } from '../../types'
 
 export default defineComponent({
+	methods: {
+		closeTab() {
+			this.$store.commit('setTab', -1)
+		},
+	},
 	setup() {
 		const { options } = useOptions()
 
@@ -21,6 +26,11 @@ export default defineComponent({
 			{{ getInputDetails(option).type }}
 			{{ value }}
 		</template>
+	</div>
+	<div class="action-buttons">
+		<IconButton icon="reload" class="reset" />
+		<IconButton icon="copy" class="copy" />
+		<IconButton icon="close" class="close" @click="closeTab" />
 	</div>
 </template>
 

@@ -17,11 +17,6 @@ export default defineComponent({
 	data() {
 		return {}
 	},
-	methods: {
-		closeTab() {
-			this.$store.commit('setTab', -1)
-		},
-	},
 	setup() {
 		const store = useStore()
 
@@ -36,16 +31,6 @@ export default defineComponent({
 
 <template>
 	<aside class="aside">
-		<!-- Action Buttons -->
-		<div class="action-buttons">
-			<IconButton
-				icon="reload"
-				class="reset"
-				v-if="tabActions.has('reset')"
-			/>
-			<IconButton icon="copy" class="copy" v-if="tabActions.has('copy')" />
-			<IconButton icon="close" class="close" @click="closeTab" />
-		</div>
 		<!-- Headder -->
 		<header>
 			<h3>{{ capitalName }}</h3>
@@ -53,11 +38,9 @@ export default defineComponent({
 		<!-- Content -->
 		<div class="content-wrapper">
 			<div class="content">
-				<!-- <div class="input" v-for="n in 12" :key="n"></div> -->
 				<Options v-if="tabName === 'options'" />
 				<Queue v-else-if="tabName === 'queue'" />
 				<About v-else-if="tabName === 'about'" />
-				<!-- Ending Text -->
 				<EndingText />
 			</div>
 		</div>
@@ -66,27 +49,33 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .aside {
-	@apply bg-gray-100 flex flex-col;
+	@apply bg-gray-100 lg:bg-opacity-60 lg:backdrop-filter lg:backdrop-blur flex flex-col;
 }
 
 header {
 	@apply p-5;
 }
 
+.content {
+	@apply px-5 pb-20 overflow-hidden;
+
+	&-wrapper {
+		@apply h-full overflow-y-scroll;
+	}
+}
+
+.ending-text {
+	@apply mt-6 pt-3 border-t-2 border-gray-300;
+}
+</style>
+
+<style lang="scss">
 .action-buttons {
 	@apply fixed right-0 bottom-16 m-3 flex space-x-2;
 	@apply md:absolute md:bottom-auto md:top-0;
 
 	.copy {
 		@apply hidden md:block;
-	}
-}
-
-.content {
-	@apply flex flex-col space-y-4 px-5 pb-12 overflow-hidden;
-
-	&-wrapper {
-		@apply overflow-y-scroll;
 	}
 }
 </style>
