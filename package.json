@@ -2,6 +2,10 @@
   "name": "glitched-writer-website",
   "version": "0.0.0",
   "author": "Damian Tarnawski @thetarnav <gthetatnav@gmail.com>",
+  "contributors": [
+    "Kacper Dąbrowski <dabrowski.kacperr2@gmail.com>"
+  ],
+  "homepage": "http://glitched-writer-app-thetarnav.vercel.app/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/thetarnav/glitched-writer-app.git"
