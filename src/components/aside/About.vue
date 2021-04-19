@@ -1,9 +1,13 @@
 <script lang="ts">
-import { DefineComponent, defineComponent } from 'vue'
+import { defineComponent } from 'vue'
 
 export default defineComponent({
 	name: 'About',
-	setup() {},
+	methods: {
+		closeTab() {
+			this.$store.commit('setTab', -1)
+		},
+	},
 })
 </script>
 
@@ -46,11 +50,36 @@ export default defineComponent({
 		</div>
 		<div class="about-links">
 			<h5>Links:</h5>
-			<div><IconButton icon="github" /> <span>GitHub</span></div>
-			<div><IconButton icon="npm" /> <span>NPM</span></div>
-			<div><IconButton icon="github" /> <span>Vue component</span></div>
-			<div><IconButton icon="github" /> <span>Demos</span></div>
+			<ul>
+				<li>
+					<a href="#">
+						<inline-svg src="./svg/github.svg" />
+						<span> Github </span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<inline-svg src="./svg/npm.svg" />
+						<span> NPM </span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<inline-svg src="./svg/github.svg" />
+						<span> Vue component </span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<inline-svg src="./svg/codepen.svg" />
+						<span> Demos </span>
+					</a>
+				</li>
+			</ul>
 		</div>
+	</div>
+	<div class="action-buttons">
+		<IconButton icon="close" class="close" @click="closeTab" />
 	</div>
 </template>
 
@@ -67,13 +96,12 @@ export default defineComponent({
 .about-features li {
 	@apply p-1;
 }
-.about-links div {
-	@apply flex items-center pt-2;
-}
-.about-links span {
-	@apply pl-3;
-}
-.about-links h5 {
-	@apply mb-3;
+.about-links {
+	ul {
+		@apply mt-2 flex flex-col space-y-3;
+	}
+	a {
+		@apply flex space-x-2;
+	}
 }
 </style>
