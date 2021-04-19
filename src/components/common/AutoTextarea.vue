@@ -86,6 +86,9 @@ export default {
 		autosize(val) {
 			if (val) this.resize()
 		},
+		modelValue(val) {
+			this.val = val
+		},
 	},
 	methods: {
 		resize() {

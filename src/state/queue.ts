@@ -19,16 +19,10 @@ export default function useQueue() {
 	}
 
 	function reset(): void {
-		// while (queue.length > 0) {
-		// 	queue.pop
-		// }
-		// let j = 0
 		for (let j = 0; j < initialTexts.length; j++) {
 			queue.shift()
 			queue.push({ text: initialTexts[j], id: j })
 		}
-		// while (queue.length < initialTexts.length) {
-		// }
 	}
 
 	return { queue, nextText, reset }
