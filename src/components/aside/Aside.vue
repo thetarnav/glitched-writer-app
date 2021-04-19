@@ -4,6 +4,7 @@ import { useStore, Getters } from '../../store'
 import EndingText from './EndingText.vue'
 const Options = defineAsyncComponent(() => import('./Options.vue'))
 const Queue = defineAsyncComponent(() => import('./Queue.vue'))
+const About = defineAsyncComponent(() => import('./About.vue'))
 
 export default defineComponent({
 	name: 'Aside',
@@ -11,6 +12,7 @@ export default defineComponent({
 		EndingText,
 		Options,
 		Queue,
+		About,
 	},
 	data() {
 		return {}
@@ -54,6 +56,7 @@ export default defineComponent({
 				<!-- <div class="input" v-for="n in 12" :key="n"></div> -->
 				<Options v-if="tabName === 'options'" />
 				<Queue v-else-if="tabName === 'queue'" />
+				<About v-else-if="tabName === 'about'" />
 				<!-- Ending Text -->
 				<EndingText />
 			</div>
