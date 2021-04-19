@@ -100,11 +100,10 @@ header {
 	@apply md:static md:w-auto md:h-auto;
 }
 .middle-wrapper {
-	@apply w-full relative flex-grow;
+	@apply w-full relative flex-grow mb-16 md:mb-0;
 }
 .aside {
-	@apply absolute z-10 inset-0 mb-16;
-	@apply md:mb-0;
-	@apply lg:right-auto lg:w-1/2;
+	@apply absolute z-10 inset-0;
+	@apply lg:right-auto lg:w-1/2 lg:max-w-[600px];
 }
 </style>
