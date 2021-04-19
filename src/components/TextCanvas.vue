@@ -21,7 +21,7 @@ export default defineComponent({
 		const text = ref(nextText())
 
 		const afterFinish = async (): Promise<any> => {
-			await wait(800)
+			await wait(1200)
 			let next = nextText()
 			if (next === text.value) return afterFinish()
 			text.value = next

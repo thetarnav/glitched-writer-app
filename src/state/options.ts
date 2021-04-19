@@ -2,7 +2,7 @@ import { reactive } from 'vue'
 import { presets, ConstructorOptions } from 'glitched-writer'
 
 export default function useOptions() {
-	const options = reactive(presets.default)
+	const options = reactive({ ...presets.default, html: true })
 
 	return { options }
 }

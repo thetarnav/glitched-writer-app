@@ -71,10 +71,10 @@ export default defineComponent({
 }
 
 .textarea {
-	@apply w-full p-2 pl-3 pr-12 rounded-md focus:text-gray-900;
+	@apply w-full p-3 pl-4 pr-14 rounded-md focus:text-gray-900;
 }
 .drag-handle {
-	@apply absolute right-0 top-0 bottom-1 w-10 flex text-gray-400;
+	@apply absolute right-0 top-0 bottom-1 w-12 flex text-gray-400;
 	cursor: move;
 
 	svg {
