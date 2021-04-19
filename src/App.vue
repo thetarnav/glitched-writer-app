@@ -2,6 +2,7 @@
 import { computed, defineAsyncComponent, defineComponent } from 'vue'
 import Navbar from './components/nav/Navbar.vue'
 import TextCanvas from './components/TextCanvas.vue'
+import StateDropdown from './components/StateDropdown.vue'
 const Aside = defineAsyncComponent(() => import('./components/aside/Aside.vue'))
 import { Tab } from './types'
 
@@ -11,6 +12,7 @@ export default defineComponent({
 		Navbar,
 		Aside,
 		TextCanvas,
+		StateDropdown,
 	},
 	data() {
 		return {}
@@ -60,6 +62,7 @@ export default defineComponent({
 			<Aside v-if="isTabOpen" :key="openTabName" />
 			<!-- Text Canvas -->
 			<TextCanvas />
+			<StateDropdown />
 		</main>
 		<div class="fixed left-5 bottom-5 hidden md:block">
 			glitched-writer@2.0.22
@@ -103,5 +106,8 @@ header {
 	@apply absolute z-10 inset-0 mb-16;
 	@apply md:mb-0;
 	@apply lg:right-auto lg:w-1/2;
+}
+.state-dropdown {
+	@apply absolute top-7 right-10;
 }
 </style>
