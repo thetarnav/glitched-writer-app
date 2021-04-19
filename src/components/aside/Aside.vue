@@ -51,10 +51,8 @@ export default defineComponent({
 		<!-- Content -->
 		<div class="content-wrapper">
 			<div class="content">
-				<!-- <div class="input" v-for="n in 12" :key="n"></div> -->
 				<Options v-if="tabName === 'options'" />
 				<Queue v-else-if="tabName === 'queue'" />
-				<!-- Ending Text -->
 				<EndingText />
 			</div>
 		</div>

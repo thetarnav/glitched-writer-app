@@ -107,7 +107,4 @@ header {
 	@apply md:mb-0;
 	@apply lg:right-auto lg:w-1/2;
 }
-.state-dropdown {
-	@apply absolute top-7 right-10;
-}
 </style>

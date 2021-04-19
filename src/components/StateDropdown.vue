@@ -6,16 +6,14 @@ export default defineComponent({
 	setup() {},
 	methods: {
 		toggleDropMenu() {
-			console.log('clicked')
-			this.isActive = !this.isActive
-			console.log(this.isActive)
-			this.arrow = this.isActive ? 'rotate(180deg)' : 'rotate(0deg)'
+			this.isOpen = !this.isOpen
+			this.iconTransform = this.isOpen ? 'rotate(180deg)' : 'rotate(0deg)'
 		},
 	},
 	data: function () {
 		return {
-			isActive: false,
-			arrow: '',
+			isOpen: false,
+			iconTransform: '',
 		}
 	},
 })
@@ -24,14 +22,14 @@ export default defineComponent({
 <template>
 	<div class="state-dropdown">
 		<div class="dropdown-header">
-			<div class="title">GW State</div>
+			<div class="title">Writer's state</div>
 			<IconButton
-				icon="chevron_down"
-				:style="{ transform: arrow }"
+				icon="chevron"
+				:style="{ transform: iconTransform }"
 				@click="toggleDropMenu()"
 			/>
 		</div>
-		<ul class="dropdown-list" :class="{ hidden: !isActive }">
+		<ul class="dropdown-list" v-show="isOpen">
 			<li>v 2.0.22</li>
 			<li>State: typing</li>
 			<li>Pause</li>
@@ -43,12 +41,12 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .state-dropdown {
-	@apply hidden w-[380px] md:block;
+	@apply absolute top-5 right-5 xl:top-12 xl:right-12  w-[340px] hidden md:block;
 }
 .dropdown-header {
-	@apply flex bg-gray-50 items-center justify-between p-5 border-b-2 border-gray-300;
+	@apply flex bg-gray-50 items-center justify-between p-3 border-b-2 border-gray-300;
 }
 .dropdown-list {
-	@apply p-5 bg-gray-50;
+	@apply p-3 bg-gray-50;
 }
 </style>
