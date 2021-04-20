@@ -52,25 +52,34 @@ export default defineComponent({
 			<h5>Links:</h5>
 			<ul>
 				<li>
-					<a href="#">
+					<a
+						href="https://github.com/thetarnav/glitched-writer"
+						target="_blank"
+					>
 						<inline-svg src="./svg/github.svg" />
 						<span> Github </span>
 					</a>
 				</li>
 				<li>
-					<a href="#">
+					<a
+						href="https://www.npmjs.com/package/glitched-writer"
+						target="_blank"
+					>
 						<inline-svg src="./svg/npm.svg" />
 						<span> NPM </span>
 					</a>
 				</li>
 				<li>
-					<a href="#">
+					<a
+						href="https://www.npmjs.com/package/vue-glitched-writer"
+						target="_blank"
+					>
 						<inline-svg src="./svg/github.svg" />
 						<span> Vue component </span>
 					</a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="https://codepen.io/collection/XWVEEa" target="_blank">
 						<inline-svg src="./svg/codepen.svg" />
 						<span> Demos </span>
 					</a>

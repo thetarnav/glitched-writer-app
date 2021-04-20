@@ -48,6 +48,11 @@ export default defineComponent({
 			}
 		},
 	},
+	created() {
+		this.options = {
+			...this.modelOptions,
+		}
+	},
 })
 </script>
 

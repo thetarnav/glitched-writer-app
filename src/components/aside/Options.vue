@@ -1,7 +1,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import useOptions, { inputDetails } from '../../state/options'
-import RangeInput from '../inputs/RangeInput.vue'
+import RangeInput from '../common/RangeInput.vue'
+import toCapital from 'lodash.startcase'
 
 export default defineComponent({
 	components: {
@@ -10,6 +11,9 @@ export default defineComponent({
 	methods: {
 		closeTab() {
 			this.$store.commit('setTab', -1)
+		},
+		toCapital(text: string): string {
+			return toCapital(text)
 		},
 	},
 	setup() {
@@ -33,7 +37,7 @@ export default defineComponent({
 			v-for="(value, option) in options"
 			:key="option"
 		>
-			<h6 class="title">{{ option }}</h6>
+			<h6 class="title">{{ toCapital(option) }}</h6>
 			<!-- @ts-ignore -->
 			<RangeInput
 				class="input"
@@ -42,9 +46,14 @@ export default defineComponent({
 				:range="getRange(option)"
 			/>
 			<auto-textarea
-				v-if="getType(option) === 'string'"
+				v-else-if="getType(option) === 'string'"
 				v-model="options[option]"
 				class="input string"
+			/>
+			<switch-button
+				v-else-if="getType(option) === 'boolean'"
+				v-model="options[option]"
+				class="input boolean"
 			/>
 		</li>
 	</ul>
@@ -64,7 +73,7 @@ export default defineComponent({
 
 		&:after {
 			content: '';
-			@apply absolute inset-x-0 top-10 h-24 bg-gradient-to-t from-white to-transparent;
+			@apply absolute inset-x-0 top-10 h-24 bg-gradient-to-t from-white to-transparent pointer-events-none;
 		}
 		&:focus-within:after {
 			@apply opacity-0;
@@ -76,6 +85,10 @@ export default defineComponent({
 
 	&.string {
 		@apply self-start;
+	}
+
+	&.boolean {
+		@apply flex-grow-0;
 	}
 }
 .title {
