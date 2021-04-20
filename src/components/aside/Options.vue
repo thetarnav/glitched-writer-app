@@ -1,9 +1,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import useOptions, { inputDetails } from '../../state/options'
-import { InputType } from '../../types'
+import RangeInput from '../inputs/RangeInput.vue'
 
 export default defineComponent({
+	components: {
+		RangeInput,
+	},
 	methods: {
 		closeTab() {
 			this.$store.commit('setTab', -1)
@@ -12,9 +15,12 @@ export default defineComponent({
 	setup() {
 		const { options } = useOptions()
 
-		const getInputDetails = (option: string) => inputDetails[option] ?? null
+		const getInputDetails = (option: string) => inputDetails[option] ?? null,
+			getRange = (option: string): [number, number] =>
+				(getInputDetails(option) as any).range ?? [0, 0],
+			getType = (option: string) => getInputDetails(option).type
 
-		return { options, getInputDetails }
+		return { options, getRange, getType }
 	},
 })
 </script>
@@ -26,13 +32,13 @@ export default defineComponent({
 			v-for="(value, option) in options"
 			:key="option"
 		>
-			<h6>{{ option }}</h6>
+			<h6 class="title">{{ option }}</h6>
 			<!-- @ts-ignore -->
 			<RangeInput
 				class="input"
-				v-if="['range', 'number'].includes(getInputDetails(option).type)"
+				v-if="['range', 'number'].includes(getType(option))"
 				v-model="options[option]"
-				:range="getInputDetails(option).range"
+				:range="getRange(option)"
 			/>
 		</li>
 	</ul>
@@ -48,6 +54,9 @@ export default defineComponent({
 	@apply flex flex-col space-y-3 md:space-y-0 md:flex-row justify-between items-stretch md:items-center;
 }
 .input {
-	@apply flex-grow md:max-w-[500px] lg:max-w-[300px];
+	@apply flex-grow md:max-w-[500px] lg:max-w-[320px];
+}
+.title {
+	@apply self-start;
 }
 </style>

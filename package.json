@@ -27,6 +27,7 @@
     "vuex": "^4.0.0"
   },
   "devDependencies": {
+    "@types/lodash.range": "^3.2.6",
     "@types/lodash.startcase": "^4.4.6",
     "@vitejs/plugin-vue": "^1.2.1",
     "@vue/cli-plugin-eslint": "^4.5.12",
