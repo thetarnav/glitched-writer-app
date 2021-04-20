@@ -57,10 +57,10 @@ header {
 }
 
 .content {
-	@apply px-5 pb-20 overflow-hidden;
+	@apply px-5 pb-20;
 
 	&-wrapper {
-		@apply h-full overflow-y-scroll;
+		@apply py-2 h-full overflow-y-scroll;
 	}
 }
 
@@ -76,6 +76,20 @@ header {
 
 	.copy {
 		@apply hidden md:block;
+	}
+}
+
+.aside-list {
+	@apply flex flex-col space-y-4;
+
+	&--item {
+		@apply relative h-auto text-gray-600 focus-within:text-gray-900;
+		@apply transition-opacity;
+
+		&.item-style,
+		.item-style {
+			@apply py-3 px-4 rounded-md bg-white;
+		}
 	}
 }
 </style>

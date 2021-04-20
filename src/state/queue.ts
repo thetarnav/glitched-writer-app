@@ -4,7 +4,7 @@ const initialTexts = [
 		'Welcome!',
 		'To <b>Glitched Writer!</b>',
 		'A <a href="https://npmjs.com/package/glitched-writer">javascript module</a> for animating text',
-		'Play with options and presets',
+		'Play with options &amp; presets',
 		'Create <i>unique effects</i>',
 		'and Enjoy!',
 	],

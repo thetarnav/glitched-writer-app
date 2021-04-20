@@ -38,13 +38,13 @@ export default defineComponent({
 		tag="ul"
 		:list="queue"
 		v-bind="dragOptions"
-		class="list"
+		class="aside-list"
 		handle=".drag-handle"
 		item-key="id"
 	>
 		<template #item="{ element }">
-			<li class="item">
-				<auto-textarea v-model="element.text" class="textarea" />
+			<li class="aside-list--item">
+				<auto-textarea v-model="element.text" class="textarea item-style" />
 
 				<i class="drag-handle">
 					<inline-svg src="./svg/draggable.svg" />
@@ -59,19 +59,16 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
-.list {
-	@apply flex flex-col space-y-3;
-}
-.item {
-	@apply relative h-auto text-gray-600;
-	@apply transition-opacity;
-}
 .sortable-chosen {
 	@apply opacity-60;
 }
 
+.aside-list {
+	@apply space-y-3;
+}
+
 .textarea {
-	@apply w-full p-3 pl-4 pr-14 rounded-md focus:text-gray-900;
+	@apply w-full pr-14;
 }
 .drag-handle {
 	@apply absolute right-0 top-0 bottom-1 w-12 flex text-gray-400;

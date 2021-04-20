@@ -1,9 +1,8 @@
 import { reactive } from 'vue'
 import { presets, ConstructorOptions } from 'glitched-writer'
 
+const options = reactive({ ...presets.default, html: true })
 export default function useOptions() {
-	const options = reactive({ ...presets.default, html: true })
-
 	return { options }
 }
 

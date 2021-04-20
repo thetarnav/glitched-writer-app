@@ -1,0 +1,19 @@
+.vue-slider {
+	&-rail {
+		@apply bg-gray-200 rounded-full;
+	}
+	&-process {
+		@apply bg-gray-500 rounded-full;
+	}
+	&-dot {
+		@apply bg-gray-500 rounded-full;
+		width: 12px !important;
+		height: 12px !important;
+	}
+	// &-dot-tooltip {
+	//    @
+	// }
+	&-dot-tooltip-text {
+		@apply text-xs;
+	}
+}

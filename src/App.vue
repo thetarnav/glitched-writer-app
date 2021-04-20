@@ -71,6 +71,7 @@ export default defineComponent({
 </template>
 
 <style src="./assets/scss/base.scss" lang="scss" />
+<style src="./assets/scss/styles.scss" lang="scss" />
 
 <style lang="scss" scoped>
 .app {

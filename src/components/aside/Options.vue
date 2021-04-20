@@ -20,13 +20,22 @@ export default defineComponent({
 </script>
 
 <template>
-	<div class="item" v-for="(value, option) in options" :key="option">
-		<h6>{{ option }}</h6>
-		<template v-if="getInputDetails(option)">
-			{{ getInputDetails(option).type }}
-			{{ value }}
-		</template>
-	</div>
+	<ul class="aside-list">
+		<li
+			class="aside-list--item item-style"
+			v-for="(value, option) in options"
+			:key="option"
+		>
+			<h6>{{ option }}</h6>
+			<!-- @ts-ignore -->
+			<RangeInput
+				class="input"
+				v-if="['range', 'number'].includes(getInputDetails(option).type)"
+				v-model="options[option]"
+				:range="getInputDetails(option).range"
+			/>
+		</li>
+	</ul>
 	<div class="action-buttons">
 		<IconButton icon="reload" class="reset" />
 		<IconButton icon="copy" class="copy" />
@@ -35,7 +44,10 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
-.item {
-	@apply py-3 px-4 bg-white rounded-md border border-gray-200;
+.aside-list--item {
+	@apply flex flex-col space-y-3 md:space-y-0 md:flex-row justify-between items-stretch md:items-center;
+}
+.input {
+	@apply flex-grow md:max-w-[500px] lg:max-w-[300px];
 }
 </style>

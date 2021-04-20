@@ -1,7 +1,7 @@
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, watch } from 'vue'
 import GlitchedWriter from 'vue-glitched-writer'
-import { wait } from 'glitched-writer'
+import { wait, ConstructorOptions } from 'glitched-writer'
 import useOptions from '../state/options'
 import useQueue from '../state/queue'
 
@@ -15,11 +15,10 @@ export default defineComponent({
 		},
 	},
 	setup() {
-		const { options } = useOptions()
+		const { options: modelOptions } = useOptions()
 		const { nextText } = useQueue()
 
 		const text = ref(nextText())
-
 		const afterFinish = async (): Promise<any> => {
 			await wait(1200)
 			let next = nextText()
@@ -27,7 +26,27 @@ export default defineComponent({
 			text.value = next
 		}
 
-		return { options, text, afterFinish }
+		/**
+		 * Random is a dummy reactive value,
+		 * it's purpose is to "trigger" options val change,
+		 * so that glitched-writer could react to changes.
+		 */
+		const random = ref(Math.random())
+		watch(modelOptions, newOptions => (random.value = Math.random()))
+
+		return { modelOptions, text, afterFinish, random }
+	},
+	data() {
+		return {
+			options: {} as ConstructorOptions,
+		}
+	},
+	watch: {
+		random() {
+			this.options = {
+				...this.modelOptions,
+			}
+		},
 	},
 })
 </script>
