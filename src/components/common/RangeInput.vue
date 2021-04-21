@@ -39,6 +39,11 @@ export default defineComponent({
 		}
 
 		watch(value, newValue => emit('update:modelValue', newValue))
+		watch(
+			props,
+			newProps =>
+				(value.value = newProps.modelValue as [number, number] | number),
+		)
 
 		return {
 			value,

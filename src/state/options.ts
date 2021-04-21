@@ -1,9 +1,27 @@
 import { reactive } from 'vue'
 import { presets, ConstructorOptions } from 'glitched-writer'
+import copyToCB from 'copy-to-clipboard'
 
-const options = reactive({ ...presets.default, html: true })
+const defaultOptions = {
+		...presets.default,
+		html: true,
+		letterize: true,
+	},
+	options = reactive({ ...defaultOptions })
+
+function reset() {
+	Object.entries(defaultOptions).forEach(([key, value]) => {
+		// @ts-ignore
+		options[key] = value
+	})
+}
+
+function copy() {
+	copyToCB(JSON.stringify(options))
+}
+
 export default function useOptions() {
-	return { options }
+	return { options, reset, copy }
 }
 
 export const inputDetails: {

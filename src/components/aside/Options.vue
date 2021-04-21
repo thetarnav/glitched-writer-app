@@ -19,7 +19,7 @@ export default defineComponent({
 		},
 	},
 	setup() {
-		const { options } = useOptions()
+		const { options, reset, copy } = useOptions()
 
 		const getInputDetails = (option: string) => inputDetails[option] ?? null,
 			getRange = (option: string): [number, number] =>
@@ -28,7 +28,7 @@ export default defineComponent({
 			getList = (option: string): any[] =>
 				(getInputDetails(option) as any).list ?? []
 
-		return { options, getRange, getType, getList }
+		return { options, getRange, getType, getList, reset, copy }
 	},
 })
 </script>
@@ -68,8 +68,8 @@ export default defineComponent({
 		</li>
 	</ul>
 	<div class="action-buttons">
-		<IconButton icon="reload" class="reset" />
-		<IconButton icon="copy" class="copy" />
+		<IconButton icon="reload" class="reset" @click="reset" />
+		<IconButton icon="copy" class="copy" @click="copy" />
 		<IconButton icon="close" class="close" @click="closeTab" />
 	</div>
 </template>
