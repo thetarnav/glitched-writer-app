@@ -3,10 +3,12 @@ import { defineComponent } from 'vue'
 import useOptions, { inputDetails } from '../../state/options'
 import RangeInput from '../common/RangeInput.vue'
 import toCapital from 'lodash.startcase'
+import SelectInput from '../common/SelectInput.vue'
 
 export default defineComponent({
 	components: {
 		RangeInput,
+		SelectInput,
 	},
 	methods: {
 		closeTab() {
@@ -22,9 +24,11 @@ export default defineComponent({
 		const getInputDetails = (option: string) => inputDetails[option] ?? null,
 			getRange = (option: string): [number, number] =>
 				(getInputDetails(option) as any).range ?? [0, 0],
-			getType = (option: string) => getInputDetails(option).type
+			getType = (option: string) => getInputDetails(option).type,
+			getList = (option: string): any[] =>
+				(getInputDetails(option) as any).list ?? []
 
-		return { options, getRange, getType }
+		return { options, getRange, getType, getList }
 	},
 })
 </script>
@@ -55,6 +59,12 @@ export default defineComponent({
 				v-model="options[option]"
 				class="input boolean"
 			/>
+			<select-input
+				v-else-if="getType(option) === 'select'"
+				v-model="options[option]"
+				:list="getList(option)"
+				class="input select"
+			/>
 		</li>
 	</ul>
 	<div class="action-buttons">
@@ -79,16 +89,25 @@ export default defineComponent({
 			@apply opacity-0;
 		}
 	}
+
+	&.boolean,
+	&.select {
+		@apply flex-row space-y-0;
+	}
 }
 .input {
 	@apply flex-grow md:max-w-[500px] lg:max-w-[320px];
 
 	&.string {
-		@apply self-start;
+		@apply md:self-start;
 	}
 
 	&.boolean {
 		@apply flex-grow-0;
+	}
+
+	&.select {
+		@apply flex-grow-0 w-24;
 	}
 }
 .title {

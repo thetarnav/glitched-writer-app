@@ -32,7 +32,7 @@ export default defineComponent({
 		 * so that glitched-writer could react to changes.
 		 */
 		const random = ref(Math.random())
-		watch(modelOptions, newOptions => (random.value = Math.random()))
+		watch(modelOptions, () => (random.value = Math.random()))
 
 		return { modelOptions, text, afterFinish, random }
 	},
@@ -43,15 +43,18 @@ export default defineComponent({
 	},
 	watch: {
 		random() {
+			this.setOptions()
+		},
+	},
+	methods: {
+		setOptions() {
 			this.options = {
 				...this.modelOptions,
 			}
 		},
 	},
 	created() {
-		this.options = {
-			...this.modelOptions,
-		}
+		this.setOptions()
 	},
 })
 </script>
