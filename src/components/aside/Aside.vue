@@ -98,7 +98,9 @@ header {
 			@apply py-3 px-4 rounded-md bg-white;
 		}
 
-		animation: list-item-appear 0.25s ease var(--list-delay, 0s) both;
+		&:not(.no-appear) {
+			animation: list-item-appear 0.25s ease var(--list-delay, 0s) both;
+		}
 	}
 }
 </style>

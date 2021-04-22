@@ -34,27 +34,29 @@ export default defineComponent({
 </script>
 
 <template>
-	<draggable
-		tag="ul"
-		:list="queue"
-		v-bind="dragOptions"
-		class="aside-list"
-		handle=".drag-handle"
-		item-key="id"
-	>
-		<template #item="{ element, index }">
-			<li
-				class="aside-list--item"
-				:style="{ '--list-delay': index * 0.05 + 's' }"
-			>
-				<auto-textarea v-model="element.text" class="textarea item-style" />
+	<transition name="slow-fade" appear>
+		<draggable
+			tag="ul"
+			:list="queue"
+			v-bind="dragOptions"
+			class="aside-list"
+			handle=".drag-handle"
+			item-key="id"
+		>
+			<template #item="{ element }">
+				<li class="aside-list--item no-appear">
+					<auto-textarea
+						v-model="element.text"
+						class="textarea item-style"
+					/>
 
-				<i class="drag-handle">
-					<inline-svg src="./svg/draggable.svg" />
-				</i>
-			</li>
-		</template>
-	</draggable>
+					<i class="drag-handle">
+						<inline-svg src="./svg/draggable.svg" />
+					</i>
+				</li>
+			</template>
+		</draggable>
+	</transition>
 	<div class="action-buttons">
 		<IconButton icon="reload" class="reset" @click="reset" />
 		<IconButton icon="close" class="close" @click="closeTab" />

@@ -6,3 +6,12 @@
 .fade-leave-to {
 	@apply opacity-0;
 }
+
+.slow-fade-enter-active,
+.slow-fade-leave-active {
+	@apply transition-opacity duration-300;
+}
+.slow-fade-enter-from,
+.slow-fade-leave-to {
+	@apply opacity-0;
+}
