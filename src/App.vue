@@ -59,7 +59,11 @@ export default defineComponent({
 		</header>
 		<main class="middle-wrapper">
 			<!-- Aside Panel -->
-			<Aside v-if="isTabOpen" :key="openTabName" />
+			<transition name="fade">
+				<div v-if="isTabOpen">
+					<Aside :key="openTabName" />
+				</div>
+			</transition>
 			<!-- Text Canvas -->
 			<TextCanvas />
 			<StateDropdown />
@@ -70,8 +74,9 @@ export default defineComponent({
 	</div>
 </template>
 
-<style src="./assets/scss/base.scss" lang="scss" />
-<style src="./assets/scss/styles.scss" lang="scss" />
+<style src="./assets/scss/base.scss" lang="scss"></style>
+<style src="./assets/scss/styles.scss" lang="scss"></style>
+<style src="./assets/scss/transitions.scss" lang="scss"></style>
 
 <style lang="scss" scoped>
 .app {

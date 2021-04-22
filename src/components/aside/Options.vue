@@ -36,7 +36,8 @@ export default defineComponent({
 		<li
 			class="aside-list--item item-style"
 			:class="getType(option)"
-			v-for="(value, option) in options"
+			:style="{ '--list-delay': index * 0.3 }"
+			v-for="(value, option, index) in options"
 			:key="option"
 		>
 			<h6 class="title">{{ toCapital(option) }}</h6>
