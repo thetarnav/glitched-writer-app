@@ -75,7 +75,7 @@ export default defineComponent({
 .text-canvas {
 	@apply w-full h-full flex justify-center items-center;
 
-	@apply transition-transform;
+	@apply transition-transform duration-500;
 	&.tab-open {
 		@apply transform lg:translate-x-[15%];
 	}

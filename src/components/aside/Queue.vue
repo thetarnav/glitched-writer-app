@@ -42,8 +42,11 @@ export default defineComponent({
 		handle=".drag-handle"
 		item-key="id"
 	>
-		<template #item="{ element }">
-			<li class="aside-list--item">
+		<template #item="{ element, index }">
+			<li
+				class="aside-list--item"
+				:style="{ '--list-delay': index * 0.05 + 's' }"
+			>
 				<auto-textarea v-model="element.text" class="textarea item-style" />
 
 				<i class="drag-handle">

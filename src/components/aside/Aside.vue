@@ -79,6 +79,13 @@ header {
 	}
 }
 
+@keyframes list-item-appear {
+	from {
+		opacity: 0;
+		transform: translateX(-3%);
+	}
+}
+
 .aside-list {
 	@apply flex flex-col space-y-4;
 
@@ -90,6 +97,8 @@ header {
 		.item-style {
 			@apply py-3 px-4 rounded-md bg-white;
 		}
+
+		animation: list-item-appear 0.25s ease var(--list-delay, 0s) both;
 	}
 }
 </style>

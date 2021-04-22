@@ -36,7 +36,7 @@ export default defineComponent({
 		<li
 			class="aside-list--item item-style"
 			:class="getType(option)"
-			:style="{ '--list-delay': index * 0.3 }"
+			:style="{ '--list-delay': index * 0.05 + 's' }"
 			v-for="(value, option, index) in options"
 			:key="option"
 		>
