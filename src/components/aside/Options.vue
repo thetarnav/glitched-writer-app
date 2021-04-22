@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
-import useOptions, { inputDetails } from '../../state/options'
+import { inputDetails, options, reset, copy } from '../../state/options'
 import RangeInput from '../common/RangeInput.vue'
 import toCapital from 'lodash.startcase'
 import SelectInput from '../common/SelectInput.vue'
@@ -19,8 +19,6 @@ export default defineComponent({
 		},
 	},
 	setup() {
-		const { options, reset, copy } = useOptions()
-
 		const getInputDetails = (option: string) => inputDetails[option] ?? null,
 			getRange = (option: string): [number, number] =>
 				(getInputDetails(option) as any).range ?? [0, 0],

@@ -20,9 +20,17 @@ function copy() {
 	copyToCB(JSON.stringify(options))
 }
 
-export default function useOptions() {
-	return { options, reset, copy }
+function setOptions(optionSet: ConstructorOptions) {
+	Object.keys(options).forEach(key => {
+		// @ts-ignore
+		options[key] = optionSet[key] ?? defaultOptions[key]
+		if (['html', 'letterize', 'endless'].includes(key))
+			// @ts-ignore
+			options[key] = defaultOptions[key]
+	})
 }
+
+export { options, reset, copy, setOptions }
 
 export const inputDetails: {
 	[key: string]:
@@ -60,7 +68,7 @@ export const inputDetails: {
 	},
 	maxGhosts: {
 		type: 'number',
-		range: [0, 1],
+		range: [0, 20],
 	},
 	glyphs: {
 		type: 'string',

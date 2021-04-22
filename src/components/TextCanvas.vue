@@ -2,7 +2,7 @@
 import { defineComponent, ref, watch } from 'vue'
 import GlitchedWriter from 'vue-glitched-writer'
 import { wait, ConstructorOptions } from 'glitched-writer'
-import useOptions from '../state/options'
+import { options as modelOptions } from '../state/options'
 import useQueue from '../state/queue'
 
 export default defineComponent({
@@ -15,7 +15,6 @@ export default defineComponent({
 		},
 	},
 	setup() {
-		const { options: modelOptions } = useOptions()
 		const { nextText } = useQueue()
 
 		const text = ref(nextText())
@@ -34,7 +33,7 @@ export default defineComponent({
 		const random = ref(Math.random())
 		watch(modelOptions, () => (random.value = Math.random()))
 
-		return { modelOptions, text, afterFinish, random }
+		return { text, afterFinish, random }
 	},
 	data() {
 		return {
@@ -49,7 +48,7 @@ export default defineComponent({
 	methods: {
 		setOptions() {
 			this.options = {
-				...this.modelOptions,
+				...modelOptions,
 			}
 		},
 	},
