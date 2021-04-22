@@ -1,9 +1,14 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
+import useState from '../state/state'
 
 export default defineComponent({
 	name: 'StateDropdown',
-	setup() {},
+	setup() {
+		return {
+			...useState(),
+		}
+	},
 	methods: {
 		toggleDropMenu() {
 			this.isOpen = !this.isOpen
@@ -31,10 +36,9 @@ export default defineComponent({
 		</div>
 		<ul class="dropdown-list" v-show="isOpen">
 			<li>v 2.0.22</li>
-			<li>State: typing</li>
-			<li>Pause</li>
-			<li>Progress: 34%</li>
-			<li>6 Ghosts</li>
+			<li>State: "{{ state }}"</li>
+			<li>Progress: {{ progress }}%</li>
+			<li>{{ nGhosts }} Ghosts</li>
 		</ul>
 	</div>
 </template>

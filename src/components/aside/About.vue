@@ -22,7 +22,7 @@ export default defineComponent({
 			</p>
 		</div>
 		<div class="about-features">
-			<h5>features:</h5>
+			<h5>Features:</h5>
 			<ul>
 				<li>
 					Manages text animation of HTML Element. Write, pause, play, add,

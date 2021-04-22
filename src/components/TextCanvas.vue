@@ -1,9 +1,10 @@
 <script lang="ts">
 import { defineComponent, ref, watch } from 'vue'
 import GlitchedWriter from 'vue-glitched-writer'
-import { wait, ConstructorOptions } from 'glitched-writer'
+import { wait, ConstructorOptions, WriterDataResponse } from 'glitched-writer'
 import { options as modelOptions } from '../state/options'
 import useQueue from '../state/queue'
+import { onWriterStep } from '../state/state'
 
 export default defineComponent({
 	components: {
@@ -18,10 +19,14 @@ export default defineComponent({
 		const { nextText } = useQueue()
 
 		const text = ref(nextText())
-		const afterFinish = async (): Promise<any> => {
+		const afterFinish = async (
+			string: string,
+			data: WriterDataResponse,
+		): Promise<any> => {
+			onWriterStep(string, data)
 			await wait(1200)
 			let next = nextText()
-			if (next === text.value) return afterFinish()
+			if (next === text.value) return afterFinish(string, data)
 			text.value = next
 		}
 
@@ -33,7 +38,7 @@ export default defineComponent({
 		const random = ref(Math.random())
 		watch(modelOptions, () => (random.value = Math.random()))
 
-		return { text, afterFinish, random }
+		return { text, afterFinish, random, onWriterStep }
 	},
 	data() {
 		return {
@@ -65,6 +70,7 @@ export default defineComponent({
 				:text="text"
 				appear
 				:options="options"
+				@step="onWriterStep"
 				@finish="afterFinish"
 			/>
 		</h1>
