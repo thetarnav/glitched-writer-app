@@ -42,7 +42,6 @@ export default defineComponent({
 			:key="option"
 		>
 			<h6 class="title">{{ toCapital(option) }}</h6>
-			<!-- @ts-ignore -->
 			<RangeInput
 				class="input"
 				v-if="['range', 'number'].includes(getType(option))"

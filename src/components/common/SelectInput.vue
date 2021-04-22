@@ -17,7 +17,7 @@ export default defineComponent({
 		const { list } = props,
 			index = ref(0),
 			{ length } = list,
-			value = computed(() => list[index.value])
+			getValue = () => list[index.value]
 
 		findIndex(props.modelValue)
 		watch(props, newProps => findIndex(newProps.modelValue))
@@ -30,12 +30,12 @@ export default defineComponent({
 		function nextIndex() {
 			index.value++
 			if (index.value >= length) index.value = 0
-			emit('update:modelValue', value)
+			emit('update:modelValue', getValue())
 		}
 
 		return {
 			nextIndex,
-			value,
+			getValue,
 		}
 	},
 })
@@ -43,7 +43,7 @@ export default defineComponent({
 
 <template>
 	<button @click="nextIndex" class="select-input">
-		{{ value }}
+		{{ getValue() }}
 	</button>
 </template>
 
