@@ -46,13 +46,13 @@ export default defineComponent({
 						href="https://github.com/thetarnav/glitched-writer"
 						target="_blank"
 					>
-						<inline-svg :src="`./svg/github.svg`" />
+						<inline-svg src="./svg/github.svg" />
 					</a>
 					<a
 						href="https://www.npmjs.com/package/glitched-writer"
 						target="_blank"
 					>
-						<inline-svg :src="`./svg/npm.svg`" class="npm" />
+						<inline-svg src="./svg/npm.svg" class="npm" />
 					</a>
 				</div>
 			</div>
@@ -109,7 +109,7 @@ header {
 	@apply w-full relative flex-grow mb-16 md:mb-0;
 }
 .aside {
-	@apply absolute z-10 inset-0;
+	@apply fixed md:absolute z-10 inset-0 bottom-16 md:bottom-0;
 	@apply lg:right-auto lg:w-1/2 lg:max-w-[600px];
 }
 </style>
