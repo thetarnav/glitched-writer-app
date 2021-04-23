@@ -5,6 +5,7 @@ import { wait, ConstructorOptions, WriterDataResponse } from 'glitched-writer'
 import { options as modelOptions } from '../modules/options'
 import useQueue from '../modules/queue'
 import { onWriterStep } from '../modules/state'
+import { debounce } from 'lodash'
 
 export default defineComponent({
 	components: {
@@ -43,11 +44,14 @@ export default defineComponent({
 	data() {
 		return {
 			options: {} as ConstructorOptions,
+			debSetOptions: debounce(this.setOptions as () => void, 1000, {
+				maxWait: 1500,
+			}),
 		}
 	},
 	watch: {
 		random() {
-			this.setOptions()
+			this.debSetOptions()
 		},
 	},
 	methods: {
@@ -166,3 +170,6 @@ export default defineComponent({
 	}
 }
 </style>
+
+function debounce(setOptions: Function): any { throw new Error('Function not
+implemented.') }
