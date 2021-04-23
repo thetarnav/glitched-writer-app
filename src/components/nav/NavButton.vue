@@ -1,6 +1,7 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { startCase } from 'lodash'
+import tabs from '../../modules/tabs'
 
 export default defineComponent({
 	props: {
@@ -9,20 +10,15 @@ export default defineComponent({
 			required: true,
 		},
 	},
-	computed: {
-		capitalName(): string {
-			return startCase(this.name)
-		},
-		isActive(): boolean {
-			return this.$store.getters.isTabOpen(this.name)
-		},
+	setup({ name }) {
+		const { toggleTab, isTabOpen } = tabs
+
+		return {
+			toggleTab: () => toggleTab(name),
+			isActive: computed(() => isTabOpen(name)),
+			capitalName: startCase(name),
+		}
 	},
-	methods: {
-		toggleTab() {
-			this.$store.dispatch('toggleTab', this.name)
-		},
-	},
-	setup() {},
 })
 </script>
 

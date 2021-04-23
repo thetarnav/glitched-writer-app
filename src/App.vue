@@ -5,6 +5,7 @@ import TextCanvas from './components/TextCanvas.vue'
 import StateDropdown from './components/StateDropdown.vue'
 const Aside = defineAsyncComponent(() => import('./components/aside/Aside.vue'))
 import { Tab } from './types'
+import tabs from './modules/tabs'
 
 export default defineComponent({
 	name: 'App',
@@ -17,15 +18,13 @@ export default defineComponent({
 	data() {
 		return {}
 	},
-	computed: {
-		isTabOpen(): boolean {
-			return this.$store.getters.isTabOpen()
-		},
-		openTabName(): Tab | null {
-			return this.$store.getters.openTabName
-		},
+	setup() {
+		const { isTabOpen, openTabName } = tabs
+		return {
+			isTabOpen: computed(() => isTabOpen()),
+			openTabName,
+		}
 	},
-	setup() {},
 })
 </script>
 

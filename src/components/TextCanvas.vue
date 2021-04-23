@@ -1,20 +1,16 @@
 <script lang="ts">
-import { defineComponent, ref, watch } from 'vue'
+import { computed, defineComponent, ref, watch } from 'vue'
 import GlitchedWriter from 'vue-glitched-writer'
 import { wait, ConstructorOptions, WriterDataResponse } from 'glitched-writer'
 import { options as modelOptions } from '../modules/options'
 import useQueue from '../modules/queue'
 import { onWriterStep } from '../modules/state'
 import { debounce } from 'lodash'
+import tabs from '../modules/tabs'
 
 export default defineComponent({
 	components: {
 		GlitchedWriter,
-	},
-	computed: {
-		isTabOpen(): boolean {
-			return this.$store.getters.isTabOpen()
-		},
 	},
 	setup() {
 		const { nextText } = useQueue()
@@ -39,7 +35,13 @@ export default defineComponent({
 		const random = ref(Math.random())
 		watch(modelOptions, () => (random.value = Math.random()))
 
-		return { text, afterFinish, random, onWriterStep }
+		return {
+			text,
+			afterFinish,
+			random,
+			onWriterStep,
+			isTabOpen: computed(() => tabs.isTabOpen()),
+		}
 	},
 	data() {
 		return {
