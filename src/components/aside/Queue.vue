@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import draggable from 'vuedraggable'
-import useQueue from '../../state/queue'
+import useQueue from '../../modules/queue'
 
 export default defineComponent({
 	components: {

@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { inputDetails, options, reset, copy } from '../../state/options'
+import { inputDetails, options, reset, copy } from '../../modules/options'
 import RangeInput from '../common/RangeInput.vue'
 import toCapital from 'lodash.startcase'
 import SelectInput from '../common/SelectInput.vue'

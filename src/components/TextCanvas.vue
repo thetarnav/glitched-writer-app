@@ -2,9 +2,9 @@
 import { defineComponent, ref, watch } from 'vue'
 import GlitchedWriter from 'vue-glitched-writer'
 import { wait, ConstructorOptions, WriterDataResponse } from 'glitched-writer'
-import { options as modelOptions } from '../state/options'
-import useQueue from '../state/queue'
-import { onWriterStep } from '../state/state'
+import { options as modelOptions } from '../modules/options'
+import useQueue from '../modules/queue'
+import { onWriterStep } from '../modules/state'
 
 export default defineComponent({
 	components: {

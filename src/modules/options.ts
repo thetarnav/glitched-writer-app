@@ -1,13 +1,19 @@
-import { reactive } from 'vue'
+import { reactive, watch } from 'vue'
 import { presets, ConstructorOptions } from 'glitched-writer'
 import copyToCB from 'copy-to-clipboard'
+import { saveToUrl, loadFromUrl } from './urlquery'
 
-const defaultOptions = {
-		...presets.default,
-		html: true,
-		letterize: true,
-	},
-	options = reactive({ ...defaultOptions })
+export const defaultOptions = {
+	...presets.default,
+	html: true,
+	letterize: true,
+}
+const options = reactive({ ...defaultOptions, ...loadFromUrl() })
+
+/**
+ * Save options to URL
+ */
+watch(options, saveToUrl)
 
 function reset() {
 	Object.entries(defaultOptions).forEach(([key, value]) => {
