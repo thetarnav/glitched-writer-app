@@ -1,11 +1,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
+import tabs from '../../modules/tabs'
 
 export default defineComponent({
 	name: 'About',
 	methods: {
 		closeTab() {
-			this.$store.commit('setTab', -1)
+			tabs.tab = -1
 		},
 	},
 })
