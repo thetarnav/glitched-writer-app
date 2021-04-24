@@ -3,7 +3,7 @@ import { presets, ConstructorOptions } from 'glitched-writer'
 import copyToCB from 'copy-to-clipboard'
 import { saveToUrl, loadFromUrl } from './urlquery'
 
-export const defaultOptions = {
+const defaultOptions = {
 	...presets.default,
 	html: true,
 	letterize: true,
@@ -16,27 +16,25 @@ const options = reactive({ ...defaultOptions, ...loadFromUrl() })
 watch(options, saveToUrl)
 
 function reset() {
-	Object.entries(defaultOptions).forEach(([key, value]) => {
-		// @ts-ignore
-		options[key] = value
-	})
+	setOptions(defaultOptions)
 }
 
 function copy() {
 	copyToCB(JSON.stringify(options))
 }
 
-function setOptions(optionSet: ConstructorOptions) {
-	Object.keys(options).forEach(key => {
-		// @ts-ignore
-		options[key] = optionSet[key] ?? defaultOptions[key]
-		if (['html', 'letterize', 'endless'].includes(key))
-			// @ts-ignore
-			options[key] = defaultOptions[key]
+function setOptions(optionSet: Partial<typeof defaultOptions>) {
+	Object.assign(options, {
+		...optionSet,
+		html: defaultOptions.html,
+		letterize: defaultOptions.letterize,
+		endless: defaultOptions.endless,
 	})
 }
 
-export { options, reset, copy, setOptions }
+export { defaultOptions, options, reset, copy, setOptions }
+
+export type InputType = 'number' | 'range' | 'string' | 'boolean' | 'select'
 
 export const inputDetails: {
 	[key: string]:
