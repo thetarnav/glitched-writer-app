@@ -1,5 +1,5 @@
 import { reactive, watch } from 'vue'
-import { presets, ConstructorOptions } from 'glitched-writer'
+import { presets } from 'glitched-writer'
 import copyToCB from 'copy-to-clipboard'
 import { saveToUrl, loadFromUrl } from './urlquery'
 
