@@ -1,7 +1,8 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import draggable from 'vuedraggable'
-import useQueue from '../../state/queue'
+import useQueue from '../../modules/queue'
+import tabs from '../../modules/tabs'
 
 export default defineComponent({
 	components: {
@@ -19,7 +20,7 @@ export default defineComponent({
 	},
 	methods: {
 		closeTab() {
-			this.$store.commit('setTab', -1)
+			tabs.tab = -1
 		},
 	},
 	setup() {

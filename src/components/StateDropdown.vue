@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
-import useState from '../state/state'
+import useState from '../modules/state'
 
 export default defineComponent({
 	name: 'StateDropdown',

@@ -38,3 +38,7 @@ h4 {
 h5 {
 	font-size: 1.25rem;
 }
+
+a {
+	@apply underline;
+}

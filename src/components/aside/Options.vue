@@ -1,9 +1,10 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { inputDetails, options, reset, copy } from '../../state/options'
+import { inputDetails, options, reset, copy } from '../../modules/options'
 import RangeInput from '../common/RangeInput.vue'
 import toCapital from 'lodash.startcase'
 import SelectInput from '../common/SelectInput.vue'
+import tabs from '../../modules/tabs'
 
 export default defineComponent({
 	components: {
@@ -12,7 +13,7 @@ export default defineComponent({
 	},
 	methods: {
 		closeTab() {
-			this.$store.commit('setTab', -1)
+			tabs.tab = -1
 		},
 		toCapital(text: string): string {
 			return toCapital(text)

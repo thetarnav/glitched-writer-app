@@ -1,26 +1,19 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { useStore } from '../../store'
-import { Tab } from '../../types'
 import NavButton from './NavButton.vue'
+import tabsModule from '../../modules/tabs'
 
 export default defineComponent({
 	name: 'Navbar',
-	data() {
-		return {}
-	},
-	computed: {
-		tabs(): Tab[] {
-			return this.$store.state.tabs
-		},
-	},
 	components: {
 		NavButton,
 	},
 	setup() {
-		const store = useStore()
-
-		return {}
+		const { tabs, openTab } = tabsModule
+		return {
+			tabs: tabs,
+			openTab: openTab,
+		}
 	},
 })
 </script>

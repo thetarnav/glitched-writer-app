@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineAsyncComponent, defineComponent } from 'vue'
-import { useStore, Getters } from '../../store'
+import tabs from '../../modules/tabs'
 import EndingText from './EndingText.vue'
 const Options = defineAsyncComponent(() => import('./Options.vue'))
 const Queue = defineAsyncComponent(() => import('./Queue.vue'))
@@ -19,12 +19,9 @@ export default defineComponent({
 		return {}
 	},
 	setup() {
-		const store = useStore()
-
 		return {
-			capitalName: store.getters.openTabCapital as Getters['openTabCapital'],
-			tabActions: store.getters.tabActions as Getters['tabActions'],
-			tabName: store.getters.openTabName as Getters['openTabName'],
+			capitalName: tabs.openTabCapital,
+			tabName: tabs.openTabName,
 		}
 	},
 })
