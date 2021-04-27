@@ -1,12 +1,56 @@
 import { reactive, watch } from 'vue'
-import { presets } from 'glitched-writer'
+import { presets as rawPresets } from 'glitched-writer'
 import copyToCB from 'copy-to-clipboard'
 import { saveToUrl, loadFromUrl } from './urlquery'
+import { clamp } from '../assets/utils'
 
+export type Preset = Partial<
+	Omit<typeof rawPresets.default, 'html' | 'letterize' | 'endless'>
+>
+
+const presets: {
+	[presetName: string]: Preset
+} = {}
+
+/**
+ * Fill preset object with modified presets from "rawPresets"
+ */
+Object.keys(rawPresets).forEach((presetName: any) => {
+	const key: keyof typeof rawPresets = presetName,
+		preset = rawPresets[key]
+
+	// Change "oneAtATime" from boolean type to number
+	if (typeof preset.oneAtATime === 'boolean')
+		preset.oneAtATime = preset.oneAtATime ? 1 : 0
+
+	// Parse "glyphs" from different types to only string
+	if (typeof preset.glyphs !== 'string' && preset.glyphs)
+		preset.glyphs = [...preset.glyphs].join('')
+
+	// Parse "maxGhosts" from float to int
+	if (preset.maxGhosts !== undefined && !Number.isInteger(preset.maxGhosts))
+		preset.maxGhosts = clamp(0, preset.maxGhosts * 15, 20)
+
+	// Remove functional (not-stylistic) options:
+	preset.html = undefined
+	preset.letterize = undefined
+	preset.endless = undefined
+
+	presets[key] = {
+		...preset,
+		glyphs: preset.glyphs as string,
+		oneAtATime: preset.oneAtATime,
+	}
+})
+
+/**
+ * VARIABLES:
+ */
 const defaultOptions = {
 	...presets.default,
 	html: true,
 	letterize: true,
+	endless: false,
 }
 const options = reactive({ ...defaultOptions, ...loadFromUrl() })
 
@@ -15,6 +59,9 @@ const options = reactive({ ...defaultOptions, ...loadFromUrl() })
  */
 watch(options, saveToUrl)
 
+/**
+ * METHODS:
+ */
 function reset() {
 	setOptions(defaultOptions)
 }
@@ -32,7 +79,10 @@ function setOptions(optionSet: Partial<typeof defaultOptions>) {
 	})
 }
 
-export { defaultOptions, options, reset, copy, setOptions }
+/**
+ * EXPORTS:
+ */
+export { defaultOptions, options, reset, copy, setOptions, presets }
 
 export type InputType = 'number' | 'range' | 'string' | 'boolean' | 'select'
 
