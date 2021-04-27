@@ -1,12 +1,12 @@
 import { debounce } from 'lodash'
-import { defaultOptions } from './options'
+import { defaultOptions, CompletePreset, OptionName } from './options'
 import { stringify, parse } from 'query-string'
 
-const debouncedFunc = (options: typeof defaultOptions) => {
+const debouncedFunc = (options: CompletePreset) => {
 	const different: { [key: string]: any } = {}
 
-	Object.keys(options).forEach(optionName => {
-		const key = (optionName as unknown) as keyof typeof options,
+	Object.keys(options).forEach((optionName: any) => {
+		const key: OptionName = optionName,
 			value = options[key],
 			defaultValue = defaultOptions[key]
 
@@ -44,14 +44,14 @@ export const saveToUrl = debounce(debouncedFunc, 1000)
  * Returns options object loaded from URL.
  * @returns object with options from url. All the values are parsed to required types. And keys correspond to writer options.
  */
-export function loadFromUrl(): Partial<typeof defaultOptions> {
+export function loadFromUrl(): Partial<CompletePreset> {
 	const loaded = parse(location.search),
 		options: Partial<typeof defaultOptions> = {},
 		toFloat = (x: string) => Number.parseFloat(x) || 0,
 		toInt = (x: string) => Number.parseInt(x) || 0
 
-	Object.keys(loaded).forEach(optionName => {
-		const key = (optionName as unknown) as keyof typeof defaultOptions,
+	Object.keys(loaded).forEach((optionName: any) => {
+		const key: OptionName = optionName,
 			value = loaded[key],
 			defaultValue = defaultOptions[key],
 			push = (val: any) => (options[key] = val)

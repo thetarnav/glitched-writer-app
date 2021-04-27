@@ -4,9 +4,11 @@ import copyToCB from 'copy-to-clipboard'
 import { saveToUrl, loadFromUrl } from './urlquery'
 import { clamp } from '../assets/utils'
 
+export type CompletePreset = typeof rawPresets.default
 export type Preset = Partial<
-	Omit<typeof rawPresets.default, 'html' | 'letterize' | 'endless'>
+	Omit<CompletePreset, 'html' | 'letterize' | 'endless'>
 >
+export type OptionName = keyof CompletePreset
 
 const presets: {
 	[presetName: string]: Preset
@@ -46,8 +48,8 @@ Object.keys(rawPresets).forEach((presetName: any) => {
 /**
  * VARIABLES:
  */
-const defaultOptions = {
-	...presets.default,
+const defaultOptions: CompletePreset = {
+	...(presets.default as CompletePreset),
 	html: true,
 	letterize: true,
 	endless: false,
@@ -70,13 +72,8 @@ function copy() {
 	copyToCB(JSON.stringify(options))
 }
 
-function setOptions(optionSet: Partial<typeof defaultOptions>) {
-	Object.assign(options, {
-		...optionSet,
-		html: defaultOptions.html,
-		letterize: defaultOptions.letterize,
-		endless: defaultOptions.endless,
-	})
+function setOptions(optionSet: Preset) {
+	Object.assign(options, optionSet)
 }
 
 /**
