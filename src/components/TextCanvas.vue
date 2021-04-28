@@ -96,7 +96,7 @@ export default defineComponent({
 
 <style lang="scss">
 .glitched-writer {
-	@apply relative p-6 block font-mono text-black tracking-tight;
+	@apply relative p-6 block font-mono text-black tracking-tight whitespace-pre;
 	line-height: 1.1;
 
 	&::after,
@@ -172,6 +172,3 @@ export default defineComponent({
 	}
 }
 </style>
-
-function debounce(setOptions: Function): any { throw new Error('Function not
-implemented.') }

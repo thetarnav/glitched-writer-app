@@ -1,12 +1,12 @@
 import { computed, reactive, ref, watch } from 'vue'
 
 const initialTexts = [
-		'Welcome!',
-		'To <b>Glitch&shy;ed Writer!</b>',
+		'Welcome.',
+		'To <b>Glitch&shy;ed Writer</b>',
 		'A <a href="https://npmjs.com/package/glitched-writer">java&shy;script module</a> for ani&shy;mating text',
-		'Play with options &amp; presets',
+		'Play with options &amp; presets&hellip;',
 		'Create <i>uni&shy;que effects</i>',
-		'and Enjoy!',
+		'and Enjoy&#8252;',
 	],
 	queue = reactive(initialTexts.map((text, id) => ({ text, id })))
 
