@@ -1,29 +1,48 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { presets } from 'glitched-writer'
 import SwitchButton from '../common/SwitchButton.vue'
 import IconButton from '../common/IconButton.vue'
-import Button from '../common/Button.vue'
+import CustomButton from '../common/CustomButton'
+import copyToCB from 'copy-to-clipboard'
+
+Object.keys(presets).forEach(preset => {
+	const acutalPreset = presets[preset]
+	if (typeof acutalPreset.oneAtATime === 'boolean') {
+		if (acutalPreset.oneAtATime === true) acutalPreset.oneAtATime = 1
+		else acutalPreset.oneAtATime = 0
+	}
+})
+
 export default defineComponent({
-	components: { SwitchButton, IconButton, Button },
+	components: { SwitchButton, IconButton },
 	name: 'Presets',
 	methods: {
 		closeTab() {
 			this.$store.commit('setTab', -1)
 		},
+
 		setActiveIndex(index) {
-			this.activeIndex = index
-			console.log(this.activeIndex)
+			if (this.isPresetOpen(index)) this.activeIndex = -1
+			else this.activeIndex = index
+		},
+		isPresetOpen(index?: number) {
+			if (index === undefined) return this.activeIndex !== -1
+			return this.activeIndex === index
 		},
 		setOpenIndex(index) {
 			this.openIndex = index
+		},
+		copy(name: string) {
+			//@ts-ignore
+			copyToCB(JSON.stringify(presets[name]))
 		},
 	},
 	setup() {},
 	data: function () {
 		return {
-			openIndex: 0,
-			activeIndex: 0,
+			openIndex: null,
+			activeIndex: -1,
 			Presets: presets,
 			iconTransform: '',
 		}
@@ -37,16 +56,13 @@ export default defineComponent({
 			v-for="(value, name, index) in Presets"
 			class="preset aside-list--item item-style"
 			:key="name"
-			:class="{ 'details-hidden': activeIndex !== index }"
+			:class="{ 'details-hidden': !isPresetOpen(index) }"
+			:style="{ '--list-delay': index * 0.05 + 's' }"
 		>
 			<div class="preset-header">
-				<h6>{{ name }}</h6>
+				<h6>{{ name }} {{ activeIndex }} {{ isPresetOpen(index) }}</h6>
 				<div class="buttons">
-					<switch-button
-						class="input boolean"
-						:modelValue="openIndex === index ? true : false"
-						@click="setOpenIndex(index)"
-					/>
+					<CustomButton class="btn--apply">Apply</CustomButton>
 					<button @click="setActiveIndex(index)">
 						<inline-svg :src="`./svg/chevron.svg`" />
 					</button>
@@ -62,6 +78,7 @@ export default defineComponent({
 					<p>{{ value }}</p>
 				</div>
 			</div>
+			<CustomButton class="btn--copy" @click="copy(name)">Copy</CustomButton>
 		</div>
 	</div>
 </template>
