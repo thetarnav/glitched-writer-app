@@ -46,7 +46,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .aside {
-	@apply bg-gray-100 lg:bg-opacity-60 lg:backdrop-filter lg:backdrop-blur flex flex-col;
+	@apply bg-0 lg:bg-opacity-60 lg:backdrop-filter lg:backdrop-blur flex flex-col;
 }
 
 header {
@@ -62,7 +62,7 @@ header {
 }
 
 .ending-text {
-	@apply mt-6 pt-3 border-t-2 border-gray-300;
+	@apply mt-6 pt-3 border-t-2 border-1;
 }
 </style>
 
@@ -87,12 +87,12 @@ header {
 	@apply flex flex-col space-y-4;
 
 	&--item {
-		@apply relative h-auto text-gray-600 focus-within:text-gray-900;
+		@apply relative h-auto text-2 focus-within:text-3;
 		@apply transition-opacity;
 
 		&.item-style,
 		.item-style {
-			@apply py-3 px-4 rounded-md bg-white;
+			@apply py-3 px-4 rounded-md bg-0;
 		}
 
 		&:not(.no-appear) {

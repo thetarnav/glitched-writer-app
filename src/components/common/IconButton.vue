@@ -21,7 +21,7 @@ export default defineComponent({
 
 <style lang="scss">
 .icon-button {
-	@apply w-12 h-12 flex bg-white text-gray-700 rounded-full border border-gray-200;
+	@apply w-12 h-12 flex bg-0 text-3 rounded-full border border-1;
 	@apply md:w-10 md:h-10;
 
 	svg {

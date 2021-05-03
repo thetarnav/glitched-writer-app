@@ -49,6 +49,6 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .select-input {
-	@apply bg-gray-200 text-sm font-medium p-1;
+	@apply bg-1 text-sm font-medium p-1;
 }
 </style>

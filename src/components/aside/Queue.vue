@@ -77,7 +77,7 @@ export default defineComponent({
 	@apply w-full pr-14;
 }
 .drag-handle {
-	@apply absolute right-0 top-0 bottom-1 w-12 flex text-gray-400;
+	@apply absolute right-0 top-0 bottom-1 w-12 flex text-2;
 	cursor: move;
 
 	svg {

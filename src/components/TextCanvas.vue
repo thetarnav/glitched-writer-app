@@ -96,17 +96,17 @@ export default defineComponent({
 
 <style lang="scss">
 .glitched-writer {
-	@apply relative p-6 block font-mono text-black tracking-tight whitespace-pre;
+	@apply relative p-6 block font-mono text-4 tracking-tight whitespace-pre;
 	line-height: 1.1;
 
 	&::after,
 	&::before {
 		content: attr(data-gw-string);
 		@apply absolute opacity-0 inset-0 p-6;
-		@apply text-gray-400 font-light;
+		@apply text-2 font-light;
 	}
 	&::before {
-		@apply text-purple-400 -z-1;
+		@apply text-1 -z-1;
 	}
 
 	&.gw-writing {

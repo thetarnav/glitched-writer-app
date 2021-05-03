@@ -48,12 +48,12 @@ export default defineComponent({
 	@apply flex;
 }
 button {
-	@apply w-12 h-6 text-sm font-medium border-2 border-gray-200 text-gray-400;
+	@apply w-12 h-6 text-sm font-medium border-2 border-1 text-2;
 	&:last-child {
 		@apply border-l-0;
 	}
 	&.active {
-		@apply bg-gray-200 text-gray-700;
+		@apply bg-1 text-3;
 	}
 }
 </style>

@@ -82,7 +82,7 @@ export default defineComponent({
 
 		&:after {
 			content: '';
-			@apply absolute inset-x-0 top-10 h-24 bg-gradient-to-t from-white to-transparent pointer-events-none;
+			@apply absolute inset-x-0 top-10 h-24 bg-gradient-to-t from-0 to-transparent pointer-events-none;
 		}
 		&:focus-within:after {
 			@apply opacity-0;

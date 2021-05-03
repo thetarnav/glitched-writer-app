@@ -5,6 +5,7 @@
 	"vetur.validation.style": false,
 	"vetur.experimental.templateInterpolationService": true,
 	"cSpell.words": [
+		"Fira",
 		"Vite",
 		"letterize",
 		"vuedraggable",

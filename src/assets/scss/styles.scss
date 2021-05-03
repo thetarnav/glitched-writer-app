@@ -1,12 +1,12 @@
 .vue-slider {
 	&-rail {
-		@apply bg-gray-200 rounded-full;
+		@apply bg-1 rounded-full;
 	}
 	&-process {
-		@apply bg-gray-500 rounded-full;
+		@apply bg-2 rounded-full;
 	}
 	&-dot {
-		@apply bg-gray-500 rounded-full;
+		@apply bg-2 rounded-full;
 		width: 12px !important;
 		height: 12px !important;
 	}
@@ -14,6 +14,16 @@
 	//    @
 	// }
 	&-dot-tooltip-text {
-		@apply text-xs;
+		@apply text-sm;
 	}
+}
+
+.caption {
+	@apply font-sans font-semibold text-sm leading-tight tracking-wide uppercase;
+	font-feature-settings: 'cpsp' on;
+}
+
+.mono {
+	@apply font-mono font-medium text-sm leading-tight tracking-normal;
+	font-feature-settings: 'tnum' on, 'lnum' on, 'cpsp' on, 'case' on, 'ss03' on;
 }

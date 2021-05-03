@@ -48,9 +48,9 @@ export default defineComponent({
 	@apply absolute top-5 right-5 xl:top-12 xl:right-12  w-[340px] hidden md:block;
 }
 .dropdown-header {
-	@apply flex bg-gray-50 items-center justify-between p-3 border-b-2 border-gray-300;
+	@apply flex bg-0 items-center justify-between p-3 border-b-2 border-1;
 }
 .dropdown-list {
-	@apply p-3 bg-gray-50;
+	@apply p-3 bg-0;
 }
 </style>

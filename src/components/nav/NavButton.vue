@@ -33,8 +33,8 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .nav-button {
-	@apply bg-gray-50 text-gray-700;
-	@apply p-3 border-t-2 border-gray-300;
+	@apply bg-0 text-3;
+	@apply p-3 border-t-2 border-1;
 	@apply flex flex-col justify-center items-center;
 	@media screen and (min-width: 768px) {
 		@apply w-max border-2 flex-row space-x-2 py-2;
@@ -48,6 +48,6 @@ export default defineComponent({
 }
 
 .active {
-	@apply border-gray-700;
+	@apply border-3;
 }
 </style>
