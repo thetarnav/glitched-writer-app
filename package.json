@@ -11,9 +11,9 @@
     "url": "git+https://github.com/thetarnav/glitched-writer-app.git"
   },
   "scripts": {
-    "serve": "vite preview",
+    "start": "vite",
     "build": "vite build",
-    "dev": "vite"
+    "preview": "vite preview"
   },
   "dependencies": {
     "copy-to-clipboard": "^3.3.1",

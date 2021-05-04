@@ -4,7 +4,6 @@ import Navbar from './components/nav/Navbar.vue'
 import TextCanvas from './components/TextCanvas.vue'
 import StateDropdown from './components/StateDropdown.vue'
 const Aside = defineAsyncComponent(() => import('./components/aside/Aside.vue'))
-// import { Tab } from './types'
 import tabs from './modules/tabs'
 
 export default defineComponent({
@@ -83,7 +82,7 @@ export default defineComponent({
 }
 
 header {
-	@apply w-full p-3 flex justify-between items-center bg-0;
+	@apply w-full pt-4 px-6 flex justify-between items-center;
 }
 .logo {
 	@apply flex space-x-2 lg:w-64;
@@ -101,7 +100,7 @@ header {
 }
 
 .navbar {
-	@apply w-full h-16 fixed z-50 left-0 bottom-0;
+	@apply w-full h-16 mb-2 fixed z-50 left-0 bottom-0;
 	@apply md:static md:w-auto md:h-auto;
 }
 .middle-wrapper {

@@ -50,14 +50,14 @@ module.exports = {
 			wide: '.035em',
 		},
 		extend: {
-			// colors: {
-			// 	gray: colors.trueGray,
-			// },
 			spacing: {
 				18: '4.5rem',
 			},
 			zIndex: {
 				'-1': '-1',
+			},
+			transitionProperty: {
+				'clip-path': 'clip-path',
 			},
 		},
 	},

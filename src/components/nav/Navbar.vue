@@ -26,7 +26,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .navbar {
-	@apply grid grid-cols-4;
-	@apply md:gap-4;
+	@apply grid grid-cols-4 gap-2 px-6;
+	@apply md:gap-6 md:p-0;
 }
 </style>
