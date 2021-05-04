@@ -3,6 +3,7 @@ import { computed, defineAsyncComponent, defineComponent } from 'vue'
 import Navbar from './components/nav/Navbar.vue'
 import TextCanvas from './components/TextCanvas.vue'
 import StateDropdown from './components/StateDropdown.vue'
+import ScreenLines from './components/ScreenLines.vue'
 const Aside = defineAsyncComponent(() => import('./components/aside/Aside.vue'))
 import tabs from './modules/tabs'
 
@@ -13,6 +14,7 @@ export default defineComponent({
 		Aside,
 		TextCanvas,
 		StateDropdown,
+		ScreenLines,
 	},
 	data() {
 		return {}
@@ -68,6 +70,8 @@ export default defineComponent({
 			<StateDropdown v-if="false" />
 		</main>
 	</div>
+	<!-- Screen Lines - Visual design elements -->
+	<ScreenLines />
 </template>
 
 <style src="./assets/scss/base.scss" lang="scss"></style>
