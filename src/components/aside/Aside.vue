@@ -5,7 +5,7 @@ import EndingText from './EndingText.vue'
 const Options = defineAsyncComponent(() => import('./Options.vue'))
 const Queue = defineAsyncComponent(() => import('./Queue.vue'))
 const About = defineAsyncComponent(() => import('./About.vue'))
-
+const Presets = defineAsyncComponent(() => import('./Presets.vue'))
 export default defineComponent({
 	name: 'Aside',
 	components: {
@@ -13,6 +13,7 @@ export default defineComponent({
 		Options,
 		Queue,
 		About,
+		Presets,
 	},
 	data() {
 		return {}
@@ -38,6 +39,7 @@ export default defineComponent({
 				<Options v-if="tabName === 'options'" />
 				<Queue v-else-if="tabName === 'queue'" />
 				<About v-else-if="tabName === 'about'" />
+				<Presets v-else-if="tabName === 'presets'" />
 				<EndingText />
 			</div>
 		</div>
