@@ -32,8 +32,9 @@ export default defineComponent({
 		<header>
 			<!-- Logo -->
 			<div class="logo">
-				<inline-svg :src="`./svg/logo.svg`" class="w-6" />
+				<inline-svg :src="`./svg/logo.svg`" class="w-5 mr-1" />
 				<h6>Glitched Writer</h6>
+				<div class="mono absolute top-full mt-1 text-2">v2.0.22</div>
 			</div>
 			<!-- Navigation -->
 			<Navbar />
@@ -64,11 +65,8 @@ export default defineComponent({
 			</transition>
 			<!-- Text Canvas -->
 			<TextCanvas />
-			<StateDropdown />
+			<StateDropdown v-if="false" />
 		</main>
-		<div class="fixed left-5 bottom-5 hidden md:block">
-			glitched-writer@2.0.22
-		</div>
 	</div>
 </template>
 
@@ -82,17 +80,25 @@ export default defineComponent({
 }
 
 header {
-	@apply w-full pt-4 px-6 flex justify-between items-center;
+	@apply w-full h-12 md:h-14 px-6 lg:px-8;
+	@apply flex justify-between items-end;
+	@apply border-gray-dark md:border-b;
 }
 .logo {
-	@apply flex space-x-2 lg:w-64;
+	@apply relative flex pb-1 lg:w-64;
+	@apply border-b border-gray  md:border-b-0;
 }
 .quick-links {
 	@apply flex space-x-2 md:space-x-3 justify-end;
-	@apply lg:fixed z-10 right-6 bottom-6;
+	@apply border-t border-gray md:border-t-0;
+	@apply transform translate-y-full lg:translate-y-0;
+
+	a {
+		@apply w-10 h-10 flex justify-center items-center bg-1;
+	}
 
 	svg {
-		@apply w-6 text-2;
+		@apply w-6 text-3;
 		&.npm {
 			@apply w-5 mt-0.5;
 		}
@@ -101,7 +107,7 @@ header {
 
 .navbar {
 	@apply w-full h-16 mb-2 fixed z-50 left-0 bottom-0;
-	@apply md:static md:w-auto md:h-auto;
+	@apply md:static md:w-auto md:h-auto md:mb-0;
 }
 .middle-wrapper {
 	@apply w-full relative flex-grow mb-16 md:mb-0;

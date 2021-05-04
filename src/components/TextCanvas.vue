@@ -96,8 +96,7 @@ export default defineComponent({
 
 <style lang="scss">
 .glitched-writer {
-	@apply relative p-6 block font-mono text-4 tracking-tight whitespace-pre;
-	line-height: 1.1;
+	@apply relative p-6 block whitespace-pre;
 
 	&::after,
 	&::before {

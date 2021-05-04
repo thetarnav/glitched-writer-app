@@ -1,0 +1,27 @@
+@font-face {
+	font-family: 'Aileron';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Aileron Regular'), url('Aileron-Regular.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Aileron';
+	font-style: normal;
+	font-weight: 600;
+	src: local('Aileron SemiBold'), url('Aileron-SemiBold.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Aileron';
+	font-style: normal;
+	font-weight: 700;
+	src: local('Aileron Bold'), url('Aileron-Bold.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Aileron';
+	font-style: normal;
+	font-weight: 900;
+	src: local('Aileron Black'), url('Aileron-Black.woff') format('woff');
+}
