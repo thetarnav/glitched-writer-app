@@ -1,10 +1,11 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
-import { presets } from 'glitched-writer'
+import { presets } from '../../modules/options'
 import SwitchButton from '../common/SwitchButton.vue'
 import IconButton from '../common/IconButton.vue'
 import CustomButton from '../common/CustomButton'
 import copyToCB from 'copy-to-clipboard'
+import { setOptions } from '../../modules/options'
 
 Object.keys(presets).forEach(preset => {
 	const acutalPreset = presets[preset]
@@ -22,7 +23,7 @@ export default defineComponent({
 			this.$store.commit('setTab', -1)
 		},
 
-		setActiveIndex(index) {
+		setActiveIndex(index: number) {
 			if (this.isPresetOpen(index)) this.activeIndex = -1
 			else this.activeIndex = index
 		},
@@ -30,18 +31,17 @@ export default defineComponent({
 			if (index === undefined) return this.activeIndex !== -1
 			return this.activeIndex === index
 		},
-		setOpenIndex(index) {
-			this.openIndex = index
-		},
 		copy(name: string) {
 			//@ts-ignore
 			copyToCB(JSON.stringify(presets[name]))
+		},
+		apply(name: string) {
+			setOptions(presets[name])
 		},
 	},
 	setup() {},
 	data: function () {
 		return {
-			openIndex: null,
 			activeIndex: -1,
 			Presets: presets,
 			iconTransform: '',
@@ -62,23 +62,27 @@ export default defineComponent({
 			<div class="preset-header">
 				<h6>{{ name }} {{ activeIndex }} {{ isPresetOpen(index) }}</h6>
 				<div class="buttons">
-					<CustomButton class="btn--apply">Apply</CustomButton>
+					<CustomButton @click="apply(name)" class="btn--apply"
+						>Apply</CustomButton
+					>
 					<button @click="setActiveIndex(index)">
 						<inline-svg :src="`./svg/chevron.svg`" />
 					</button>
 				</div>
 			</div>
-			<div
-				:key="name"
-				v-for="(value, name, index) in value"
-				class="preset-details"
-			>
-				<div class="preset-details__row">
+			<div class="preset-details">
+				<div
+					class="preset-details__row"
+					:key="name"
+					v-for="(value, name, index) in value"
+				>
 					<p>{{ name }}</p>
 					<p>{{ value }}</p>
 				</div>
+				<CustomButton icon="copy" class="btn--copy" @click="copy(name)"
+					>Copy</CustomButton
+				>
 			</div>
-			<CustomButton class="btn--copy" @click="copy(name)">Copy</CustomButton>
 		</div>
 	</div>
 </template>
