@@ -3,8 +3,10 @@ import { computed, defineAsyncComponent, defineComponent } from 'vue'
 import Navbar from './components/nav/Navbar.vue'
 import TextCanvas from './components/TextCanvas.vue'
 import StateDropdown from './components/StateDropdown.vue'
-import ScreenLines from './components/ScreenLines.vue'
 const Aside = defineAsyncComponent(() => import('./components/aside/Aside.vue'))
+const ScreenLines = defineAsyncComponent(
+	() => import('./components/ScreenLines.vue'),
+)
 import tabs from './modules/tabs'
 
 export default defineComponent({
