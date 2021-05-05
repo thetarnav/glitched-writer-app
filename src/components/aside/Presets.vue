@@ -1,51 +1,42 @@
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
-import { presets } from '../../modules/options'
+import { defineComponent } from 'vue'
+import copyToCB from 'copy-to-clipboard'
+
 import SwitchButton from '../common/SwitchButton.vue'
 import IconButton from '../common/IconButton.vue'
-import CustomButton from '../common/CustomButton'
-import copyToCB from 'copy-to-clipboard'
-import { setOptions } from '../../modules/options'
+import CustomButton from '../common/Button.vue'
 
-Object.keys(presets).forEach(preset => {
-	const acutalPreset = presets[preset]
-	if (typeof acutalPreset.oneAtATime === 'boolean') {
-		if (acutalPreset.oneAtATime === true) acutalPreset.oneAtATime = 1
-		else acutalPreset.oneAtATime = 0
-	}
-})
+import { presets, setOptions } from '../../modules/options'
+import tabs from '../../modules/tabs'
 
 export default defineComponent({
-	components: { SwitchButton, IconButton },
+	components: { SwitchButton, IconButton, CustomButton },
 	name: 'Presets',
+	data() {
+		return {
+			presets,
+			openPresets: [] as number[],
+		}
+	},
 	methods: {
 		closeTab() {
-			this.$store.commit('setTab', -1)
+			tabs.tab = -1
 		},
-
-		setActiveIndex(index: number) {
-			if (this.isPresetOpen(index)) this.activeIndex = -1
-			else this.activeIndex = index
+		setActiveIndex(index: number): void {
+			if (this.isPresetOpen(index)) {
+				const removeIndex = this.openPresets.indexOf(index)
+				this.openPresets.splice(removeIndex, 1)
+			} else this.openPresets.push(index)
 		},
-		isPresetOpen(index?: number) {
-			if (index === undefined) return this.activeIndex !== -1
-			return this.activeIndex === index
+		isPresetOpen(index: number): boolean {
+			return this.openPresets.includes(index)
 		},
 		copy(name: string) {
-			//@ts-ignore
 			copyToCB(JSON.stringify(presets[name]))
 		},
 		apply(name: string) {
 			setOptions(presets[name])
 		},
-	},
-	setup() {},
-	data: function () {
-		return {
-			activeIndex: -1,
-			Presets: presets,
-			iconTransform: '',
-		}
 	},
 })
 </script>
@@ -53,48 +44,53 @@ export default defineComponent({
 <template>
 	<div class="aside-list">
 		<div
-			v-for="(value, name, index) in Presets"
+			v-for="(value, name, index) in presets"
 			class="preset aside-list--item item-style"
 			:key="name"
 			:class="{ 'details-hidden': !isPresetOpen(index) }"
 			:style="{ '--list-delay': index * 0.05 + 's' }"
 		>
 			<div class="preset-header">
-				<h6>{{ name }} {{ activeIndex }} {{ isPresetOpen(index) }}</h6>
+				<h6>{{ name }}</h6>
 				<div class="buttons">
 					<CustomButton @click="apply(name)" class="btn--apply"
 						>Apply</CustomButton
 					>
-					<button @click="setActiveIndex(index)">
+					<button @click="setActiveIndex(index)" class="btn--open">
 						<inline-svg :src="`./svg/chevron.svg`" />
 					</button>
 				</div>
 			</div>
 			<div class="preset-details">
 				<div
-					class="preset-details__row"
+					class="preset-details__row text-sm"
 					:key="name"
-					v-for="(value, name, index) in value"
+					v-for="(value, name) in value"
 				>
 					<p>{{ name }}</p>
-					<p>{{ value }}</p>
+					<p class="max-w-[200px]">
+						{{ typeof value === 'string' ? `"${value}"` : value }}
+					</p>
 				</div>
-				<CustomButton icon="copy" class="btn--copy" @click="copy(name)"
+				<CustomButton icon="copy" class="btn--copy mt-4" @click="copy(name)"
 					>Copy</CustomButton
 				>
 			</div>
 		</div>
 	</div>
+	<div class="action-buttons">
+		<IconButton icon="close" class="close" @click="closeTab" />
+	</div>
 </template>
 <style lang="scss" scoped>
 .preset-header {
-	@apply flex justify-between  p-1;
+	@apply flex justify-between items-center;
 }
 .buttons {
-	@apply flex;
-	button {
-		@apply ml-3 transform rotate-180;
-	}
+	@apply flex space-x-3;
+}
+.btn--open {
+	@apply transform rotate-180;
 }
 .preset-details {
 	@apply pt-2;
@@ -103,7 +99,7 @@ export default defineComponent({
 	}
 }
 .details-hidden {
-	.buttons button {
+	.btn--open {
 		@apply transform rotate-0;
 	}
 	.preset-details {
