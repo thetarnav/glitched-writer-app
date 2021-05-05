@@ -24,12 +24,16 @@ export default defineComponent({
 		},
 
 		setActiveIndex(index: number) {
-			if (this.isPresetOpen(index)) this.activeIndex = -1
-			else this.activeIndex = index
+			if (this.isPresetOpen(index)) {
+				const eleIndex = this.listOfIndex.indexOf(index)
+				if (eleIndex > -1) {
+					this.listOfIndex.splice(eleIndex, 1)
+				}
+			} else this.listOfIndex.push(index)
 		},
 		isPresetOpen(index?: number) {
-			if (index === undefined) return this.activeIndex !== -1
-			return this.activeIndex === index
+			if (this.listOfIndex.includes(index)) return true
+			return false
 		},
 		copy(name: string) {
 			//@ts-ignore
@@ -42,9 +46,9 @@ export default defineComponent({
 	setup() {},
 	data: function () {
 		return {
-			activeIndex: -1,
 			Presets: presets,
 			iconTransform: '',
+			listOfIndex: [],
 		}
 	},
 })
@@ -60,7 +64,7 @@ export default defineComponent({
 			:style="{ '--list-delay': index * 0.05 + 's' }"
 		>
 			<div class="preset-header">
-				<h6>{{ name }} {{ activeIndex }} {{ isPresetOpen(index) }}</h6>
+				<h6>{{ name }}</h6>
 				<div class="buttons">
 					<CustomButton @click="apply(name)" class="btn--apply"
 						>Apply</CustomButton
