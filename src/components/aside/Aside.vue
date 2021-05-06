@@ -45,7 +45,7 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
-@import '../../assets/scss/mixins.scss';
+@import '../../assets/scss/utils/mixins';
 
 .aside {
 	@apply bg-0 lg:bg-opacity-60 lg:backdrop-filter lg:backdrop-blur flex flex-col;

@@ -1,12 +1,11 @@
 <script lang="ts">
-import { computed, defineComponent, ref, watch } from 'vue'
+import { defineComponent, ref, watch } from 'vue'
 import GlitchedWriter from 'vue-glitched-writer'
 import { wait, ConstructorOptions, WriterDataResponse } from 'glitched-writer'
-import { options as modelOptions } from '../modules/options'
-import useQueue from '../modules/queue'
-import { onWriterStep } from '../modules/state'
+import { options as modelOptions } from '../../modules/options'
+import useQueue from '../../modules/queue'
+import { onWriterStep } from '../../modules/state'
 import { debounce } from 'lodash'
-import tabs from '../modules/tabs'
 
 export default defineComponent({
 	components: {
@@ -28,19 +27,18 @@ export default defineComponent({
 		}
 
 		/**
-		 * Random is a dummy reactive value,
+		 * Dummy reactive value,
 		 * it's purpose is to "trigger" options val change,
 		 * so that glitched-writer could react to changes.
 		 */
-		const random = ref(Math.random())
-		watch(modelOptions, () => (random.value = Math.random()))
+		const dummy = ref(Math.random())
+		watch(modelOptions, () => (dummy.value = Math.random()))
 
 		return {
 			text,
 			afterFinish,
-			random,
+			dummy,
 			onWriterStep,
-			isTabOpen: computed(() => tabs.isTabOpen()),
 		}
 	},
 	data() {
@@ -52,7 +50,7 @@ export default defineComponent({
 		}
 	},
 	watch: {
-		random() {
+		dummy() {
 			this.debSetOptions()
 		},
 	},
@@ -70,7 +68,7 @@ export default defineComponent({
 </script>
 
 <template>
-	<figure class="text-canvas" :class="{ 'tab-open': isTabOpen }">
+	<figure class="writer-frame">
 		<h1>
 			<GlitchedWriter
 				:text="text"
@@ -84,7 +82,7 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
-.text-canvas {
+.writer-frame {
 	@apply w-full h-full flex justify-center items-center overflow-hidden;
 
 	@apply transition-transform duration-500;
