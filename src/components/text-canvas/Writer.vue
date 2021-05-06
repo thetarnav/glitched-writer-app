@@ -5,6 +5,7 @@ import { wait, ConstructorOptions, WriterDataResponse } from 'glitched-writer'
 import { options as modelOptions } from '../../modules/options'
 import useQueue from '../../modules/queue'
 import { onWriterStep } from '../../modules/state'
+import { finishEmitter } from '../../modules/event-bus'
 import { debounce } from 'lodash'
 
 export default defineComponent({
@@ -19,6 +20,7 @@ export default defineComponent({
 			string: string,
 			data: WriterDataResponse,
 		): Promise<any> => {
+			finishEmitter.emit(string)
 			onWriterStep(string, data)
 			await wait(1200)
 			let next = nextText()
@@ -93,7 +95,7 @@ export default defineComponent({
 </style>
 
 <style lang="scss">
-.glitched-writer {
+.writer-frame .glitched-writer {
 	@apply relative p-6 block whitespace-pre;
 
 	&::after,
