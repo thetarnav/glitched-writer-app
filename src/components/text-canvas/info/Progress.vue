@@ -1,8 +1,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import useState from '../../../modules/state'
+import KeyActions from './KeyActions.vue'
 
 export default defineComponent({
+	components: {
+		KeyActions,
+	},
 	setup() {
 		const { state, progressP: p } = useState()
 		return {
@@ -20,14 +24,7 @@ export default defineComponent({
 			<div class="graph"></div>
 		</div>
 		<div class="state mono">{{ state }}</div>
-		<div class="key-action mono">
-			<span>(Space)</span>
-			<span>Pause</span>
-		</div>
-		<div class="key-action mono">
-			<span>(r)</span>
-			<span>Reset</span>
-		</div>
+		<KeyActions />
 	</figure>
 </template>
 
@@ -37,7 +34,7 @@ export default defineComponent({
 	@apply absolute md:fixed right-6 lg:right-8;
 	top: $v-position;
 	@apply mt-3 md:mt-0;
-	@apply flex flex-col space-y-2 items-end;
+	@apply flex flex-col space-y-1 items-end;
 	@apply text-2 uppercase;
 }
 
@@ -57,12 +54,5 @@ export default defineComponent({
 			$gray-light calc((100 - var(--progress, 0)) * 1%),
 			$gray 0
 		);
-}
-
-.key-action {
-	@apply hidden md:block;
-	> *:first-child {
-		@apply mr-1;
-	}
 }
 </style>
