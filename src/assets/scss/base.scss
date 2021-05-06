@@ -1,3 +1,5 @@
+@import './styles.scss', './transitions.scss';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -33,4 +35,8 @@ p {
 
 a {
 	@apply underline;
+}
+
+::selection {
+	@apply text-0 bg-3 bg-opacity-50;
 }

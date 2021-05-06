@@ -30,7 +30,7 @@ export default defineComponent({
 	<aside class="aside">
 		<!-- Headder -->
 		<header>
-			<h3>{{ capitalName }}</h3>
+			<h2>{{ capitalName }}</h2>
 		</header>
 		<!-- Content -->
 		<div class="content-wrapper">
@@ -45,6 +45,8 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
+@import '../../assets/scss/utils/mixins';
+
 .aside {
 	@apply bg-0 lg:bg-opacity-60 lg:backdrop-filter lg:backdrop-blur flex flex-col;
 }
@@ -58,6 +60,7 @@ header {
 
 	&-wrapper {
 		@apply h-full overflow-y-scroll;
+		@include hide-scrollbar;
 	}
 }
 

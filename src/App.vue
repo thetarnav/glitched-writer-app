@@ -1,8 +1,7 @@
 <script lang="ts">
 import { computed, defineAsyncComponent, defineComponent } from 'vue'
 import Navbar from './components/nav/Navbar.vue'
-import TextCanvas from './components/TextCanvas.vue'
-import StateDropdown from './components/StateDropdown.vue'
+import TextCanvas from './components/text-canvas/TextCanvas.vue'
 const Aside = defineAsyncComponent(() => import('./components/aside/Aside.vue'))
 const ScreenLines = defineAsyncComponent(
 	() => import('./components/ScreenLines.vue'),
@@ -15,7 +14,6 @@ export default defineComponent({
 		Navbar,
 		Aside,
 		TextCanvas,
-		StateDropdown,
 		ScreenLines,
 	},
 	data() {
@@ -69,7 +67,7 @@ export default defineComponent({
 			</transition>
 			<!-- Text Canvas -->
 			<TextCanvas />
-			<StateDropdown v-if="false" />
+			<!-- <StateDropdown /> -->
 		</main>
 	</div>
 	<!-- Screen Lines - Visual design elements -->
@@ -77,8 +75,6 @@ export default defineComponent({
 </template>
 
 <style src="./assets/scss/base.scss" lang="scss"></style>
-<style src="./assets/scss/styles.scss" lang="scss"></style>
-<style src="./assets/scss/transitions.scss" lang="scss"></style>
 
 <style lang="scss" scoped>
 .app {

@@ -1,0 +1,39 @@
+@mixin hide-scrollbar {
+	-ms-overflow-style: none; /* Internet Explorer 10+ */
+	scrollbar-width: none; /* Firefox */
+
+	&::-webkit-scrollbar {
+		display: none; /* Safari and Chrome */
+	}
+}
+
+@mixin limit-lines($n: 2) {
+	overflow: hidden;
+	white-space: normal;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: $n; /* number of lines to show */
+	-webkit-box-orient: vertical;
+}
+
+@mixin hover-bars {
+	@apply relative;
+	&:after,
+	&:before {
+		content: '';
+		@apply absolute w-full h-0.5 my-0.5 bg-3;
+	}
+	&::before {
+		@apply bottom-full;
+	}
+	&:after {
+		@apply top-full;
+	}
+
+	&:hover,
+	&:focus {
+		&:after,
+		&:before {
+		}
+	}
+}

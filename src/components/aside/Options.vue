@@ -106,7 +106,7 @@ export default defineComponent({
 	}
 
 	&.select {
-		@apply flex-grow-0 w-24;
+		@apply flex-grow-0;
 	}
 }
 .title {
