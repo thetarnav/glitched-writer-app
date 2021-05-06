@@ -31,9 +31,11 @@ export default defineComponent({
 </script>
 
 <template>
-	<figure class="counters">
-		<div class="group">
-			<p class="mono">{{ nFinished }}/{{ letters.length }}</p>
+	<div class="counters">
+		<figure class="group">
+			<figcaption class="mono">
+				{{ nFinished }}/{{ letters.length }}
+			</figcaption>
 			<div class="progress-bar letters">
 				<span
 					v-for="(done, index) in letters"
@@ -42,30 +44,28 @@ export default defineComponent({
 					:class="{ done }"
 				></span>
 			</div>
-		</div>
-		<div class="group">
-			<p class="mono">{{ nGhosts }} Ghosts</p>
+		</figure>
+		<figure class="group">
+			<figcaption class="mono">{{ nGhosts }} Ghosts</figcaption>
 			<div
 				class="progress-bar ghosts"
 				:style="{ '--progress': ghostsP }"
 			></div>
-		</div>
-	</figure>
+		</figure>
+	</div>
 </template>
 
 <style lang="scss" scoped>
 @import '../../../assets/scss/utils/variables';
 .counters {
-	@apply absolute md:fixed right-6 flex flex-col space-y-2;
+	@apply absolute md:fixed right-6;
+	@apply flex flex-col space-y-2;
 	bottom: $v-position;
+	@apply uppercase text-2;
 }
 
 .group {
-	@apply flex flex-col items-end;
-}
-
-p {
-	@apply uppercase text-2 mb-0.5;
+	@apply flex flex-col space-y-0.5 items-end;
 }
 
 .progress-bar {
