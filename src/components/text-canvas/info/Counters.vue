@@ -58,7 +58,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import '../../../assets/scss/utils/variables';
 .counters {
-	@apply absolute md:fixed right-6;
+	@apply absolute md:fixed right-6 lg:right-8;
 	@apply flex flex-col space-y-2;
 	bottom: $v-position;
 	@apply uppercase text-2;
