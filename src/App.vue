@@ -67,7 +67,6 @@ export default defineComponent({
 			</transition>
 			<!-- Text Canvas -->
 			<TextCanvas />
-			<!-- <StateDropdown /> -->
 		</main>
 	</div>
 	<!-- Screen Lines - Visual design elements -->
