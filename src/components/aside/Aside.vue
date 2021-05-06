@@ -54,10 +54,10 @@ header {
 }
 
 .content {
-	@apply px-5 pb-20;
+	@apply px-6 pb-20;
 
 	&-wrapper {
-		@apply py-2 h-full overflow-y-scroll;
+		@apply h-full overflow-y-scroll;
 	}
 }
 
@@ -68,7 +68,8 @@ header {
 
 <style lang="scss">
 .action-buttons {
-	@apply fixed right-0 bottom-16 m-3 flex space-x-2;
+	@apply fixed right-0 bottom-[4.5rem] mx-6 my-4;
+	@apply flex space-x-2;
 	@apply md:absolute md:bottom-auto md:top-0;
 
 	.copy {
@@ -92,7 +93,7 @@ header {
 
 		&.item-style,
 		.item-style {
-			@apply py-3 px-4 rounded-md bg-0;
+			@apply py-3 px-4 bg-1;
 		}
 
 		&:not(.no-appear) {

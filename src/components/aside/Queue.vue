@@ -84,14 +84,4 @@ export default defineComponent({
 		@apply m-auto fill-current text-gray-darkest;
 	}
 }
-.action-buttons {
-	@apply p-3 md:pr-6;
-}
-.item-style {
-	@apply bg-1 rounded-none my-1;
-}
-.aside-list--item {
-}
-li {
-}
 </style>
