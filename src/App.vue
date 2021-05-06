@@ -115,7 +115,7 @@ header {
 	@apply w-full relative flex-grow mb-16 md:mb-0;
 }
 .aside {
-	@apply fixed md:absolute z-10 inset-0 bottom-16 md:bottom-0;
+	@apply fixed md:absolute z-10 inset-0 bottom-[4.5rem] md:bottom-0;
 	@apply lg:right-auto lg:w-1/2 lg:max-w-[600px];
 }
 </style>

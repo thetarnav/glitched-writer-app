@@ -74,14 +74,14 @@ export default defineComponent({
 }
 
 .textarea {
-	@apply w-full pr-14;
+	@apply w-full pr-14 text-4;
 }
 .drag-handle {
 	@apply absolute right-0 top-0 bottom-1 w-12 flex text-2;
 	cursor: move;
 
 	svg {
-		@apply m-auto;
+		@apply m-auto fill-current text-gray-darkest;
 	}
 }
 </style>
