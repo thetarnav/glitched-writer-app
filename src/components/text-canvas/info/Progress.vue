@@ -32,7 +32,7 @@ export default defineComponent({
 @import '../../../assets/scss/utils/variables',
 	'../../../assets/scss/utils/mixins';
 .progress-info {
-	@apply absolute md:fixed right-6 lg:right-8;
+	@apply absolute md:fixed -z-1 right-6 lg:right-8;
 	top: $v-position;
 	@apply mt-3 md:mt-0;
 	@apply flex flex-col space-y-1 items-end;

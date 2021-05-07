@@ -4,27 +4,29 @@ import GlitchedWriter from 'vue-glitched-writer'
 import { wait, ConstructorOptions, WriterDataResponse } from 'glitched-writer'
 import { options as modelOptions } from '../../modules/options'
 import useQueue from '../../modules/queue'
-import { onWriterStep } from '../../modules/state'
+import { updateState } from '../../modules/state'
 import { finishEmitter } from '../../modules/event-bus'
 import { debounce } from 'lodash'
+import { lerp } from '../../assets/utils'
 
 export default defineComponent({
 	components: {
 		GlitchedWriter,
 	},
 	setup() {
-		const { nextText } = useQueue()
+		const { nextText } = useQueue(),
+			text = ref(nextText())
 
-		const text = ref(nextText())
-		const afterFinish = async (
-			string: string,
-			data: WriterDataResponse,
-		): Promise<any> => {
-			finishEmitter.emit(string)
-			onWriterStep(string, data)
-			await wait(1200)
+		async function afterFinish(string: string, data: WriterDataResponse) {
+			finishEmitter.emit(writerEl.value?.textContent ?? '')
+			updateState(string, data)
+			// wait time depends on previous written text to give user time to read
+			await wait((writerEl.value?.textContent?.length ?? 1) * 55 + 300)
 			let next = nextText()
-			if (next === text.value) return afterFinish(string, data)
+			if (next === text.value) {
+				afterFinish(string, data)
+				return
+			}
 			text.value = next
 		}
 
@@ -36,11 +38,49 @@ export default defineComponent({
 		const dummy = ref(Math.random())
 		watch(modelOptions, () => (dummy.value = Math.random()))
 
+		/**
+		 * Correcting the writer Element height
+		 */
+		const writerEl = ref(null as null | HTMLElement),
+			scale = {
+				now: 1,
+				goal: 1,
+			},
+			y = {
+				now: window.innerHeight / 2 - 20,
+				goal: window.innerHeight / 2 - 20,
+			}
+
+		setInterval(() => {
+			// correct height
+			if (!writerEl.value) return
+			const writer = writerEl.value,
+				{ height: h } = writer.getBoundingClientRect(),
+				vh = window.innerHeight,
+				max = 0.2361 * vh
+
+			scale.goal = h < max ? 1 : max / h
+			y.goal = vh / 2 - h / 2
+		}, 300)
+
+		// Every frame - Writer position animation
+		function nextFrame() {
+			const writer = writerEl.value
+			if (!writer) return
+			const s = (scale.now = lerp(scale.now, scale.goal, 0.004)),
+				t = (y.now = lerp(y.now, y.goal, 0.002))
+			writer.style.transform = `scale(${s}) translateY(${t}px)`
+
+			requestAnimationFrame(nextFrame)
+		}
+		requestAnimationFrame(nextFrame)
+
 		return {
 			text,
 			afterFinish,
 			dummy,
-			onWriterStep,
+			writerEl,
+			updateState,
 		}
 	},
 	data() {
@@ -51,6 +91,7 @@ export default defineComponent({
 			}),
 		}
 	},
+	computed: {},
 	watch: {
 		dummy() {
 			this.debSetOptions()
@@ -71,12 +112,12 @@ export default defineComponent({
 
 <template>
 	<figure class="writer-frame">
-		<h1>
+		<h1 class="writer" ref="writerEl">
 			<GlitchedWriter
 				:text="text"
 				appear
 				:options="options"
-				@step="onWriterStep"
+				@step="updateState"
 				@finish="afterFinish"
 			/>
 		</h1>
@@ -85,25 +126,33 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .writer-frame {
-	@apply w-full h-full flex justify-center items-center overflow-hidden;
-
+	@apply fixed top-0 left-0 w-full h-full flex items-center overflow-hidden;
 	@apply transition-base duration-500;
 }
-
 .tab-open .writer-frame {
 	@apply opacity-0 lg:opacity-100 transform lg:translate-x-[15%];
+}
+
+.writer {
+	@apply fixed top-6 md:top-0 inset-x-6 md:inset-x-[23.6vw];
 }
 </style>
 
 <style lang="scss">
 .writer-frame .glitched-writer {
-	@apply relative p-6 block whitespace-pre;
+	* {
+		font-size: inherit;
+		font-family: inherit;
+		font-weight: inherit;
+	}
+
+	@apply relative;
 
 	&::after,
 	&::before {
 		content: attr(data-gw-string);
-		@apply absolute opacity-0 inset-0 p-6;
-		@apply text-2 font-light;
+		@apply absolute opacity-0 inset-x-0 top-0;
+		@apply text-2 font-semibold;
 	}
 	&::before {
 		@apply text-1 -z-1;

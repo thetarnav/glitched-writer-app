@@ -13,7 +13,7 @@ body {
 
 h1 {
 	@apply text-4 font-sans font-black text-lg uppercase tracking-tight;
-	line-height: 80%;
+	line-height: 90%;
 	font-size: clamp(4rem, 5vw, 5rem);
 	font-feature-settings: 'cpsp' on;
 }

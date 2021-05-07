@@ -10,7 +10,7 @@ const state = reactive({
 	letters: [] as boolean[],
 })
 
-export const onWriterStep = debounce(onWriterStepRaw, 110, { maxWait: 220 })
+export const updateState = debounce(onWriterStepRaw, 110, { maxWait: 220 })
 
 function onWriterStepRaw(string: string, data: WriterDataResponse) {
 	// Set number of ghosts
