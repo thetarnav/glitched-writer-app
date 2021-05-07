@@ -1,10 +1,9 @@
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue'
-import tabs from '../../modules/tabs'
+import { defineAsyncComponent, defineComponent, ref } from 'vue'
 import Writer from './Writer.vue'
 import Counters from './info/Counters.vue'
 import Progress from './info/Progress.vue'
-import Logs from './info/Logs.vue'
+const Logs = defineAsyncComponent(() => import('./info/Logs.vue'))
 
 export default defineComponent({
 	components: {
@@ -18,7 +17,6 @@ export default defineComponent({
 		window.addEventListener('resize', () => (vw.value = window.innerWidth))
 
 		return {
-			isTabOpen: computed(() => tabs.isTabOpen()),
 			vw,
 		}
 	},
@@ -26,7 +24,7 @@ export default defineComponent({
 </script>
 
 <template>
-	<Writer :class="{ 'tab-open': isTabOpen }" />
+	<Writer />
 	<Counters />
 	<Progress />
 	<Logs v-if="vw > 768" />

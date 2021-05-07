@@ -24,12 +24,13 @@ export default defineComponent({
 			<div class="graph"></div>
 		</div>
 		<div class="state mono">{{ state }}</div>
-		<KeyActions />
+		<KeyActions class="key-actions" />
 	</figure>
 </template>
 
 <style lang="scss" scoped>
-@import '../../../assets/scss/utils/variables';
+@import '../../../assets/scss/utils/variables',
+	'../../../assets/scss/utils/mixins';
 .progress-info {
 	@apply absolute md:fixed right-6 lg:right-8;
 	top: $v-position;
@@ -54,5 +55,30 @@ export default defineComponent({
 			$gray-light calc((100 - var(--progress, 0)) * 1%),
 			$gray 0
 		);
+}
+
+// HIDDEN
+.progress,
+.state,
+.key-actions {
+	@apply animate-show-element transition-base duration-500;
+}
+.tab-open {
+	.progress,
+	.state,
+	.key-actions {
+		@apply opacity-0 transform translate-x-20;
+	}
+}
+
+.key-actions {
+	@media (max-width: 768px) {
+		--hide-el-d: -1;
+	}
+}
+.tab-open {
+	.key-actions {
+		@apply -translate-x-20 md:translate-x-20;
+	}
 }
 </style>

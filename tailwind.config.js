@@ -58,6 +58,23 @@ module.exports = {
 			},
 			transitionProperty: {
 				'clip-path': 'clip-path',
+				base: 'opacity, transform',
+			},
+			keyframes: {
+				wiggle: {
+					'0%, 100%': { transform: 'rotate(-3deg)' },
+					'50%': { transform: 'rotate(3deg)' },
+				},
+				'show-element': {
+					'0%': {
+						opacity: 0,
+						transform: 'translateX(calc(var(--hide-el-d, 1) * 5rem))',
+					},
+				},
+			},
+			animation: {
+				wiggle: 'wiggle 1s ease-in-out infinite',
+				'show-element': 'show-element 600ms 300ms',
 			},
 		},
 	},

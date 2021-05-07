@@ -1,3 +1,5 @@
+@import './utils/mixins.scss';
+
 .fade-enter-active,
 .fade-leave-active {
 	@apply transition-opacity;

@@ -62,6 +62,8 @@ export default defineComponent({
 	@apply flex flex-col space-y-2;
 	bottom: $v-position;
 	@apply uppercase text-2;
+
+	@apply animate-show-element transition-base duration-500;
 }
 
 .group {
@@ -96,5 +98,9 @@ export default defineComponent({
 			);
 		}
 	}
+}
+
+.tab-open .counters {
+	@apply opacity-0 transform translate-x-20;
 }
 </style>

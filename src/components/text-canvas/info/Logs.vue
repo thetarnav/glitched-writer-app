@@ -51,6 +51,8 @@ export default defineComponent({
 	@apply flex flex-col space-y-2;
 	@apply h-60 pl-4 -ml-4 overflow-hidden;
 
+	@apply transition-base duration-500;
+
 	&:after {
 		content: '';
 		@apply absolute inset-x-0 bottom-px h-18 bg-gradient-to-t from-0 to-transparent;
@@ -70,6 +72,10 @@ li {
 		content: '';
 		@apply absolute bg-1 w-2 h-px right-full top-2 mr-1;
 	}
+}
+
+.tab-open .logs {
+	@apply opacity-0 transform -translate-x-20;
 }
 </style>
 

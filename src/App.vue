@@ -30,7 +30,7 @@ export default defineComponent({
 </script>
 
 <template>
-	<div class="app">
+	<div class="app" :class="{ 'tab-open': isTabOpen }">
 		<header>
 			<!-- Logo -->
 			<div class="logo">
@@ -77,7 +77,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .app {
-	@apply flex flex-col w-screen h-screen;
+	@apply flex flex-col w-screen h-screen overflow-hidden;
 }
 
 header {

@@ -87,10 +87,11 @@ export default defineComponent({
 .writer-frame {
 	@apply w-full h-full flex justify-center items-center overflow-hidden;
 
-	@apply transition-transform duration-500;
-	&.tab-open {
-		@apply transform lg:translate-x-[15%];
-	}
+	@apply transition-base duration-500;
+}
+
+.tab-open .writer-frame {
+	@apply opacity-0 lg:opacity-100 transform lg:translate-x-[15%];
 }
 </style>
 
