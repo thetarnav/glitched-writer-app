@@ -139,6 +139,7 @@ export default defineComponent({
 </style>
 
 <style lang="scss">
+@import '../../assets/scss/utils/mixins';
 .writer-frame .glitched-writer {
 	* {
 		font-size: inherit;
@@ -147,6 +148,7 @@ export default defineComponent({
 	}
 
 	@apply relative;
+	@include antialiased;
 
 	&::after,
 	&::before {

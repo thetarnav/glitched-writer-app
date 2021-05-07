@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 @mixin hide-scrollbar {
 	-ms-overflow-style: none; /* Internet Explorer 10+ */
 	scrollbar-width: none; /* Firefox */
@@ -5,6 +7,13 @@
 	&::-webkit-scrollbar {
 		display: none; /* Safari and Chrome */
 	}
+}
+
+@mixin antialiased {
+	font-smooth: always;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-shadow: rgba($gray-darkest, 0.01) 0 0 1px;
 }
 
 @mixin limit-lines($n: 2) {
