@@ -92,6 +92,7 @@ header {
 	@apply border-b border-gray  md:border-b-0;
 }
 .quick-links {
+	@apply relative z-10;
 	@apply flex space-x-2 md:space-x-3 justify-end;
 	@apply border-t border-gray md:border-t-0;
 	@apply transform translate-y-full lg:translate-y-0;
@@ -106,6 +107,19 @@ header {
 		&.npm {
 			@apply w-5 mt-0.5;
 		}
+	}
+}
+.logo,
+.quick-links {
+	@apply transition-base duration-500;
+}
+.tab-open {
+	.logo,
+	.quick-links {
+		@apply opacity-0 lg:opacity-100 transform -translate-y-4 lg:translate-y-0;
+	}
+	.quick-links {
+		@apply translate-y-0;
 	}
 }
 
