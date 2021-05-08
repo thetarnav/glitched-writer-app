@@ -44,6 +44,7 @@ export default defineComponent({
 
 .graph {
 	@apply w-6 h-6 bg-1 rounded-full overflow-hidden;
+	will-change: background;
 	background: radial-gradient(
 			circle closest-side,
 			transparent 100%,

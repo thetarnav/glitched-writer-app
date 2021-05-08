@@ -135,6 +135,7 @@ export default defineComponent({
 
 .writer {
 	@apply fixed top-6 md:top-0 inset-x-6 md:inset-x-[23.6vw];
+	will-change: transform, height;
 }
 </style>
 

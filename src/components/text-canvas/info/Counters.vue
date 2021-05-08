@@ -78,6 +78,7 @@ export default defineComponent({
 
 		.letter {
 			@apply flex-grow bg-2 opacity-0 transition-opacity duration-200;
+			will-change: opacity;
 
 			&.done {
 				@apply opacity-100;
