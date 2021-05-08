@@ -126,7 +126,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .writer-frame {
-	@apply fixed top-0 left-0 w-full h-full flex items-center overflow-hidden;
+	@apply fixed z-50 top-0 left-0 w-full h-full flex items-center overflow-hidden pointer-events-none;
 	@apply transition-base duration-500;
 }
 .tab-open .writer-frame {

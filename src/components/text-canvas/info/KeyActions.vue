@@ -13,7 +13,7 @@
 
 <style lang="scss" scoped>
 .wrapper {
-	@apply fixed -z-1 md:static left-6 lg:left-8;
+	@apply fixed md:static left-6 lg:left-8;
 	@apply flex flex-col space-y-1 items-start md:items-end;
 }
 
