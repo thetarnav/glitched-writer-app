@@ -22,7 +22,7 @@ Object.keys(rawPresets).forEach((presetName: any) => {
 		preset = rawPresets[key]
 
 	// Change "oneAtATime" from boolean type to number
-	if (typeof preset.oneAtATime === 'boolean')
+	if (typeof preset.oneAtATime !== 'number')
 		preset.oneAtATime = preset.oneAtATime ? 1 : 0
 
 	// Parse "glyphs" from different types to only string
@@ -34,9 +34,9 @@ Object.keys(rawPresets).forEach((presetName: any) => {
 		preset.maxGhosts = clamp(0, preset.maxGhosts * 15, 20)
 
 	// Remove functional (not-stylistic) options:
-	preset.html = undefined
-	preset.letterize = undefined
-	preset.endless = undefined
+	delete preset.html
+	delete preset.letterize
+	delete preset.endless
 
 	presets[key] = {
 		...preset,
@@ -73,7 +73,7 @@ function copy() {
 }
 
 function setOptions(optionSet: Preset) {
-	Object.assign(options, optionSet)
+	Object.assign(options, presets.default, optionSet)
 }
 
 /**
