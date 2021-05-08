@@ -44,16 +44,16 @@ export default defineComponent({
 <template>
 	<div class="aside-list">
 		<div
-			v-for="(value, name, index) in presets"
-			class="preset aside-list--item item-style"
-			:key="name"
+			v-for="(presetDetails, preset, index) in presets"
+			class="preset aside-list--item"
+			:key="preset"
 			:class="{ 'details-hidden': !isPresetOpen(index) }"
 			:style="{ '--list-delay': index * 0.05 + 's' }"
 		>
-			<div class="preset-header">
-				<h6>{{ name }}</h6>
+			<div class="preset-header item-style">
+				<h6>{{ preset }} :</h6>
 				<div class="buttons">
-					<CustomButton @click="apply(name)" class="btn--apply"
+					<CustomButton @click="apply(preset)" class="btn--apply"
 						>Apply</CustomButton
 					>
 					<button @click="setActiveIndex(index)" class="btn--open">
@@ -61,19 +61,27 @@ export default defineComponent({
 					</button>
 				</div>
 			</div>
-			<div class="preset-details">
+			<div class="preset-details item-style">
 				<div
-					class="preset-details__row text-sm"
-					:key="name"
-					v-for="(value, name) in value"
+					class="preset-details__row mono"
+					v-for="(optionValue, option) in presetDetails"
+					:key="option"
 				>
-					<p>{{ name }}</p>
-					<p class="max-w-[200px]">
-						{{ typeof value === 'string' ? `"${value}"` : value }}
-					</p>
+					<span>{{ option }} :</span>
+					<span>
+						{{
+							typeof optionValue === 'string'
+								? `"${
+										optionValue.length > 30
+											? optionValue.substring(0, 30) + '&#8230;'
+											: optionValue
+								  }"`
+								: optionValue
+						}}
+					</span>
 				</div>
-				<CustomButton icon="copy" class="btn--copy mt-4" @click="copy(name)"
-					>Copy</CustomButton
+				<CustomButton icon="copy" class="btn--copy" @click="copy(preset)"
+					>Copy options object</CustomButton
 				>
 			</div>
 		</div>
@@ -93,9 +101,15 @@ export default defineComponent({
 	@apply transform rotate-180;
 }
 .preset-details {
-	@apply pt-2;
-	.preset-details__row {
-		@apply flex justify-between whitespace-nowrap overflow-hidden;
+	@apply border-t border-gray;
+	@apply flex flex-col items-stretch;
+
+	&__row {
+		@apply flex space-x-10 justify-between whitespace-nowrap overflow-hidden;
+	}
+
+	.btn--copy {
+		@apply self-end mt-3 hidden lg:block;
 	}
 }
 .details-hidden {

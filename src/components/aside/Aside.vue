@@ -93,7 +93,7 @@ header {
 	@apply flex flex-col space-y-4;
 
 	&--item {
-		@apply relative h-auto text-2 focus-within:text-3;
+		@apply relative h-auto text-3;
 		@apply transition-opacity;
 
 		&.item-style,

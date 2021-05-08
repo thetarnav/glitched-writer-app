@@ -14,7 +14,7 @@ export default defineComponent({
 </script>
 
 <template>
-	<button class="custom-button">
+	<button class="custom-button caption">
 		<!-- <span><slot></slot></span>
 		<inline-svg :src="`./svg/${icon}.svg`" /> -->
 		<slot></slot>
@@ -23,6 +23,7 @@ export default defineComponent({
 
 <style lang="scss">
 .custom-button {
-	@apply bg-gray-300 px-2 py-1 rounded-sm;
+	@apply h-8 px-3;
+	@apply bg-gray text-gray-darkest;
 }
 </style>

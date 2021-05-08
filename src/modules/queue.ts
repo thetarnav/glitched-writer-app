@@ -3,7 +3,7 @@ import { computed, reactive, ref, watch } from 'vue'
 const initialTexts = [
 		'Welcome.',
 		'To Glitch&shy;ed Writer',
-		'A java&shy;script module for ani&shy;mating text',
+		'A java&shy;script module for writ&shy;ing text',
 		'Play with options &amp; presets&hellip;',
 		'Create <i>uni&shy;que effects</i>',
 		'and <u>Enjoy</u>&#8252;',
