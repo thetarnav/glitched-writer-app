@@ -82,6 +82,7 @@ export default defineComponent({
 
 			&.done {
 				@apply opacity-100;
+				will-change: unset;
 			}
 		}
 	}

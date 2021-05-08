@@ -50,32 +50,41 @@ export default defineComponent({
 @import '../../assets/scss/utils/mixins';
 
 .aside {
-	@apply bg-0 lg:bg-opacity-60 lg:backdrop-filter lg:backdrop-blur flex flex-col;
+	@apply p-6 lg:p-8 pt-12 lg:pt-12 lg:pb-16 lg:pr-0;
+	@apply flex flex-col;
 }
 
 header {
-	@apply p-5;
+	@apply flex-shrink-0 h-14 mb-6 lg:mb-8 pl-4;
+	@apply flex items-center;
+	@apply bg-1 border-t border-gray;
 }
 
 .content {
-	@apply px-6 pb-20;
+	@apply bg-0 pb-20 pt-4;
 
 	&-wrapper {
-		@apply h-full overflow-y-scroll;
+		@apply justify-self-stretch overflow-y-scroll;
+		@apply border-t border-b border-gray;
 		@include hide-scrollbar;
 	}
 }
 
 .ending-text {
-	@apply mt-6 pt-3 border-t-2 border-1;
+	@apply mt-4 pt-4 px-4 border-t border-gray;
 }
 </style>
 
 <style lang="scss">
 .action-buttons {
-	@apply fixed right-0 bottom-[4.5rem] mx-6 my-4;
+	@apply fixed right-0 bottom-[4.5rem] mb-4 mr-6;
 	@apply flex space-x-2;
-	@apply md:absolute md:bottom-auto md:top-0;
+	@apply md:absolute md:bottom-auto md:top-10 md:mr-10;
+	@apply lg:mr-4;
+
+	> button {
+		@apply w-12 h-12;
+	}
 
 	.copy {
 		@apply hidden md:block;
