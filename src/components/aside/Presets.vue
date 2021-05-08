@@ -80,7 +80,10 @@ export default defineComponent({
 						}}
 					</span>
 				</div>
-				<CustomButton icon="copy" class="btn--copy" @click="copy(preset)"
+				<CustomButton
+					leadingIcon="copy"
+					class="btn--copy"
+					@click="copy(preset)"
 					>Copy options object</CustomButton
 				>
 			</div>
@@ -109,7 +112,7 @@ export default defineComponent({
 	}
 
 	.btn--copy {
-		@apply self-end mt-3 hidden lg:block;
+		@apply self-end mt-3 hidden lg:flex;
 	}
 }
 .details-hidden {

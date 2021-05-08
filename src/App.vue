@@ -1,12 +1,13 @@
 <script lang="ts">
 import { computed, defineAsyncComponent, defineComponent } from 'vue'
+import tabs from './modules/tabs'
+
 import Navbar from './components/nav/Navbar.vue'
 import TextCanvas from './components/text-canvas/TextCanvas.vue'
 const Aside = defineAsyncComponent(() => import('./components/aside/Aside.vue'))
 const ScreenLines = defineAsyncComponent(
 	() => import('./components/ScreenLines.vue'),
 )
-import tabs from './modules/tabs'
 
 export default defineComponent({
 	name: 'App',
@@ -76,6 +77,7 @@ export default defineComponent({
 <style src="./assets/scss/base.scss" lang="scss"></style>
 
 <style lang="scss" scoped>
+@import './assets/scss/utils/mixins.scss';
 .app {
 	@apply flex flex-col w-screen h-screen overflow-hidden;
 }
@@ -96,6 +98,7 @@ header {
 
 	a {
 		@apply w-10 h-10 flex justify-center items-center bg-1;
+		@include button-interaction(bg-2);
 	}
 
 	svg {

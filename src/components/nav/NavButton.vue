@@ -40,9 +40,13 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
+@import '../../assets/scss/utils/mixins.scss';
 .nav-button {
-	@apply relative bg-1 text-gray-darkest;
-	@apply md:w-32 md:h-10;
+	@apply relative md:w-32 md:h-10;
+	@apply bg-1 text-gray-darkest transition-colors;
+
+	outline: none !important;
+	@include hover-bars;
 }
 
 .cover,
@@ -71,10 +75,6 @@ export default defineComponent({
 .active {
 	.cover {
 		clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-	}
-
-	&:focus {
-		outline: 0;
 	}
 }
 </style>

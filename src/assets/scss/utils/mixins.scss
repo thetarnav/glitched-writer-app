@@ -30,19 +30,29 @@
 	&:after,
 	&:before {
 		content: '';
-		@apply absolute w-full h-0.5 my-0.5 bg-3;
+		@apply absolute left-0 w-full h-0.5 my-0.5;
+		@apply bg-3 pointer-events-none;
+		@apply opacity-0 transform transition-base;
 	}
 	&::before {
-		@apply bottom-full;
+		@apply bottom-full translate-y-1;
 	}
 	&:after {
-		@apply top-full;
+		@apply top-full -translate-y-1;
 	}
 
-	&:hover,
-	&:focus {
+	&:hover {
 		&:after,
 		&:before {
+			@apply lg:opacity-100 lg:translate-y-0;
 		}
+	}
+}
+
+@mixin button-interaction($activeClass: bg-3) {
+	@include hover-bars;
+	outline: none !important;
+	&:active {
+		@apply #{$activeClass};
 	}
 }
