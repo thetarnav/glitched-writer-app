@@ -67,6 +67,10 @@ a {
 	@apply cursor-pointer font-bold md:hover:underline;
 }
 
+svg {
+	@apply w-5;
+}
+
 ::selection {
 	@apply text-0 bg-3 bg-opacity-50;
 }

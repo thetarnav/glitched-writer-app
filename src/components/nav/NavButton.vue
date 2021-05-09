@@ -69,7 +69,7 @@ export default defineComponent({
 }
 
 .icon {
-	@apply w-5;
+	@apply w-4.5;
 }
 
 .active {
