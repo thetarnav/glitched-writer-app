@@ -1,10 +1,32 @@
+<script lang="ts">
+import { defineComponent } from 'vue'
+import { writerStateAction } from '../../../modules/event-bus'
+
+export default defineComponent({
+	setup() {
+		function togglePause() {
+			writerStateAction.emit('togglePause')
+		}
+
+		function reset() {
+			writerStateAction.emit('reset')
+		}
+
+		return {
+			togglePause,
+			reset,
+		}
+	},
+})
+</script>
+
 <template>
 	<div class="wrapper">
-		<a class="key-action mono">
+		<a @click="togglePause" class="key-action mono">
 			<span>(Space)</span>
 			<span>Pause</span>
 		</a>
-		<a class="key-action mono">
+		<a @click="reset" class="key-action mono">
 			<span>(r)</span>
 			<span>Reset</span>
 		</a>

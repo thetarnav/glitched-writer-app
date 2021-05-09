@@ -18,3 +18,7 @@ class Emitter<T> {
 }
 
 export const finishEmitter = new Emitter<string>('gw-finish')
+
+export const writerStateAction = new Emitter<'togglePause' | 'reset'>(
+	'sriter-state-change',
+)

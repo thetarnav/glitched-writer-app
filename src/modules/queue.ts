@@ -25,5 +25,7 @@ export default function useQueue() {
 		}
 	}
 
-	return { queue, nextText, reset }
+	const resetIndex = () => (i = -1)
+
+	return { queue, nextText, reset, resetIndex }
 }

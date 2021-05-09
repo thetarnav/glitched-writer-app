@@ -5,7 +5,7 @@ import { wait, ConstructorOptions, WriterDataResponse } from 'glitched-writer'
 import { options as modelOptions } from '../../modules/options'
 import useQueue from '../../modules/queue'
 import { updateState } from '../../modules/state'
-import { finishEmitter } from '../../modules/event-bus'
+import { finishEmitter, writerStateAction } from '../../modules/event-bus'
 import { debounce } from 'lodash'
 import { lerp } from '../../assets/utils'
 
@@ -14,14 +14,22 @@ export default defineComponent({
 		GlitchedWriter,
 	},
 	setup() {
-		const { nextText } = useQueue(),
+		const { nextText, resetIndex } = useQueue(),
 			text = ref(nextText())
+
+		let doResetIndex = false
 
 		async function afterFinish(string: string, data: WriterDataResponse) {
 			finishEmitter.emit(writerEl.value?.textContent ?? '')
 			updateState(string, data)
 			// wait time depends on previous written text to give user time to read
 			await wait((writerEl.value?.textContent?.length ?? 1) * 60 + 350)
+
+			if (doResetIndex) {
+				resetIndex()
+				doResetIndex = false
+			}
+
 			let next = nextText()
 			if (next === text.value) {
 				afterFinish(string, data)
@@ -52,7 +60,6 @@ export default defineComponent({
 			}
 
 		setInterval(() => {
-			// correct height
 			if (!writerEl.value) return
 			const writer = writerEl.value,
 				{ height: h } = writer.getBoundingClientRect(),
@@ -75,12 +82,28 @@ export default defineComponent({
 		}
 		requestAnimationFrame(nextFrame)
 
+		/**
+		 * Listening to key-actions
+		 * for reseting, pausing and playing
+		 */
+		const paused = ref(false)
+		writerStateAction.listen(action => {
+			if (!action) return
+			if (action === 'reset') {
+				paused.value = false
+				doResetIndex = true
+			} else {
+				paused.value = !paused.value
+			}
+		})
+
 		return {
 			text,
 			afterFinish,
 			dummy,
 			writerEl,
 			updateState,
+			paused,
 		}
 	},
 	data() {
@@ -115,10 +138,11 @@ export default defineComponent({
 		<h1 class="writer" ref="writerEl">
 			<GlitchedWriter
 				:text="text"
-				appear
 				:options="options"
+				:pause="paused"
 				@step="updateState"
 				@finish="afterFinish"
+				appear
 			/>
 		</h1>
 	</figure>
