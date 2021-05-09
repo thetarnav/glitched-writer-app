@@ -1,0 +1,58 @@
+@import './variables.scss';
+
+@mixin hide-scrollbar {
+	-ms-overflow-style: none; /* Internet Explorer 10+ */
+	scrollbar-width: none; /* Firefox */
+
+	&::-webkit-scrollbar {
+		display: none; /* Safari and Chrome */
+	}
+}
+
+@mixin antialiased {
+	font-smooth: always;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-shadow: rgba($gray-darkest, 0.01) 0 0 1px;
+}
+
+@mixin limit-lines($n: 2) {
+	overflow: hidden;
+	white-space: normal;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: $n; /* number of lines to show */
+	-webkit-box-orient: vertical;
+}
+
+@mixin hover-bars {
+	@apply relative;
+	&:after,
+	&:before {
+		content: '';
+		@apply absolute left-0 w-full h-0.5 my-0.5;
+		@apply bg-3 pointer-events-none;
+		@apply opacity-0 transform transition-base;
+	}
+	&::before {
+		@apply bottom-full translate-y-1;
+	}
+	&:after {
+		@apply top-full -translate-y-1;
+	}
+
+	&:hover {
+		&:after,
+		&:before {
+			@apply lg:opacity-100 lg:translate-y-0;
+		}
+	}
+}
+
+@mixin button-interaction($activeClass: bg-3) {
+	@include hover-bars;
+	outline: none !important;
+	&:active {
+		@apply #{$activeClass};
+	}
+}

@@ -44,36 +44,45 @@ export default defineComponent({
 <template>
 	<div class="aside-list">
 		<div
-			v-for="(value, name, index) in presets"
-			class="preset aside-list--item item-style"
-			:key="name"
+			v-for="(presetDetails, preset, index) in presets"
+			class="preset aside-list--item"
+			:key="preset"
 			:class="{ 'details-hidden': !isPresetOpen(index) }"
 			:style="{ '--list-delay': index * 0.05 + 's' }"
 		>
-			<div class="preset-header">
-				<h6>{{ name }}</h6>
-				<div class="buttons">
-					<CustomButton @click="apply(name)" class="btn--apply"
-						>Apply</CustomButton
-					>
-					<button @click="setActiveIndex(index)" class="btn--open">
-						<inline-svg :src="`./svg/chevron.svg`" />
-					</button>
-				</div>
-			</div>
-			<div class="preset-details">
-				<div
-					class="preset-details__row text-sm"
-					:key="name"
-					v-for="(value, name) in value"
+			<div class="preset-header item-style">
+				<h6>{{ preset }} :</h6>
+				<CustomButton @click="apply(preset)" class="btn--apply"
+					>Apply</CustomButton
 				>
-					<p>{{ name }}</p>
-					<p class="max-w-[200px]">
-						{{ typeof value === 'string' ? `"${value}"` : value }}
-					</p>
+				<button @click="setActiveIndex(index)" class="btn--open">
+					<inline-svg :src="`./svg/chevron.svg`" />
+				</button>
+			</div>
+			<div class="preset-details item-style">
+				<div
+					class="preset-details__row mono"
+					v-for="(optionValue, option) in presetDetails"
+					:key="option"
+				>
+					<span>{{ option }} :</span>
+					<span>
+						{{
+							typeof optionValue === 'string'
+								? `"${
+										optionValue.length > 30
+											? optionValue.substring(0, 30) + '&#8230;'
+											: optionValue
+								  }"`
+								: optionValue
+						}}
+					</span>
 				</div>
-				<CustomButton icon="copy" class="btn--copy mt-4" @click="copy(name)"
-					>Copy</CustomButton
+				<CustomButton
+					leadingIcon="copy"
+					class="btn--copy"
+					@click="copy(preset)"
+					>Copy options object</CustomButton
 				>
 			</div>
 		</div>
@@ -84,23 +93,37 @@ export default defineComponent({
 </template>
 <style lang="scss" scoped>
 .preset-header {
+	@apply relative pr-14;
 	@apply flex justify-between items-center;
 }
-.buttons {
-	@apply flex space-x-3;
-}
 .btn--open {
-	@apply transform rotate-180;
+	@apply absolute right-0 inset-y-0 w-12;
+	@apply flex justify-center items-center;
+	@apply outline-none transition-colors;
+
+	&:hover {
+		@apply lg:bg-2 lg:bg-opacity-20;
+	}
+
+	svg {
+		@apply transform rotate-180;
+	}
 }
 .preset-details {
-	@apply pt-2;
-	.preset-details__row {
-		@apply flex justify-between whitespace-nowrap overflow-hidden;
+	@apply border-t border-gray;
+	@apply flex flex-col items-stretch;
+
+	&__row {
+		@apply flex space-x-10 justify-between whitespace-nowrap overflow-hidden;
+	}
+
+	.btn--copy {
+		@apply self-end mt-3 hidden lg:flex;
 	}
 }
 .details-hidden {
-	.btn--open {
-		@apply transform rotate-0;
+	.btn--open svg {
+		@apply rotate-0;
 	}
 	.preset-details {
 		@apply hidden;

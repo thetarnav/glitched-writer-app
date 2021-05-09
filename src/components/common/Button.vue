@@ -3,26 +3,47 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
 	name: 'CustomButton',
-	// props: {
-	// 	buttonIcon: {
-	// 		type: String,
-	// 		required: true,
-	// 	},
-	// },
+	props: {
+		trailingIcon: {
+			type: String,
+			default: '',
+		},
+		leadingIcon: {
+			type: String,
+			default: '',
+		},
+	},
 	setup() {},
 })
 </script>
 
 <template>
-	<button class="custom-button">
-		<!-- <span><slot></slot></span>
-		<inline-svg :src="`./svg/${icon}.svg`" /> -->
-		<slot></slot>
+	<button class="button caption">
+		<inline-svg
+			v-if="leadingIcon"
+			:src="`./svg/${leadingIcon}.svg`"
+			class="icon"
+		/>
+		<span><slot></slot></span>
+		<inline-svg
+			v-if="trailingIcon"
+			:src="`./svg/${trailingIcon}.svg`"
+			class="icon"
+		/>
 	</button>
 </template>
 
 <style lang="scss">
-.custom-button {
-	@apply bg-gray-300 px-2 py-1 rounded-sm;
+@import '../../assets/scss/utils/mixins.scss';
+.button {
+	@apply h-8 px-3;
+	@apply bg-2 text-4 transition-colors;
+	@apply flex space-x-1 items-center;
+
+	@include button-interaction;
+}
+
+.icon {
+	@apply w-4;
 }
 </style>

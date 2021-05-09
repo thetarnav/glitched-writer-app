@@ -1,15 +1,22 @@
 import { reactive, ref, toRefs } from '@vue/reactivity'
 import { WriterDataResponse } from 'glitched-writer'
+import { debounce } from 'lodash'
 
 const state = reactive({
 	nGhosts: 0,
 	state: 'stale',
-	progress: 0,
+	progressP: 0,
+	progressN: 0,
+	letters: [] as boolean[],
 })
 
-export function onWriterStep(string: string, data: WriterDataResponse) {
+export const updateState = debounce(onWriterStepRaw, 110, { maxWait: 220 })
+
+function onWriterStepRaw(string: string, data: WriterDataResponse) {
+	// Set number of ghosts
 	state.nGhosts = data.state.nGhosts
 
+	// Set verbal state
 	{
 		const {
 			state: { isPaused, isTyping, finished },
@@ -20,6 +27,7 @@ export function onWriterStep(string: string, data: WriterDataResponse) {
 		else state.state = 'stale'
 	}
 
+	// Set progress & letters
 	{
 		const { charTable } = data.writer,
 			nFinished = charTable.reduce(
@@ -28,7 +36,9 @@ export function onWriterStep(string: string, data: WriterDataResponse) {
 			),
 			p = nFinished / charTable.length
 
-		state.progress = Math.round(p * 100)
+		state.letters = charTable.map(char => char.finished)
+		state.progressN = nFinished
+		state.progressP = Math.round(p * 100)
 	}
 }
 

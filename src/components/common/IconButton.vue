@@ -20,9 +20,13 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
+@import '../../assets/scss/utils/mixins.scss';
 .icon-button {
-	@apply w-12 h-12 flex bg-white text-gray-700 rounded-full border border-gray-200;
+	@apply w-12 h-12 flex;
+	@apply bg-3 md:bg-2 text-0 md:text-4 border border-1;
 	@apply md:w-10 md:h-10;
+
+	@include button-interaction;
 
 	svg {
 		@apply m-auto md:w-5;
