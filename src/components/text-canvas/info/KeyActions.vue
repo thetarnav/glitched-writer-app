@@ -1,5 +1,5 @@
 <template>
-	<div class="wrapper">
+	<div class="wrapper" v-if="false">
 		<a class="key-action mono">
 			<span>(Space)</span>
 			<span>Pause</span>
