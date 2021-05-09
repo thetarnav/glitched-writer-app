@@ -1,20 +1,18 @@
 .vue-slider {
 	&-rail {
-		@apply bg-1 rounded-full;
+		@apply bg-0;
+		z-index: 1 !important;
 	}
 	&-process {
-		@apply bg-2 rounded-full;
+		@apply relative z-10 bg-3;
+		z-index: 3 !important;
 	}
 	&-dot {
-		@apply bg-2 rounded-full;
-		width: 12px !important;
-		height: 12px !important;
-	}
-	// &-dot-tooltip {
-	//    @
-	// }
-	&-dot-tooltip-text {
-		@apply text-sm;
+		@apply bg-3;
+		width: theme('spacing.3') !important;
+		height: theme('spacing.3') !important;
+		outline: theme('colors.1') 0.25rem solid;
+		z-index: 2 !important;
 	}
 }
 

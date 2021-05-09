@@ -57,7 +57,7 @@ export default defineComponent({
 
 <template>
 	<div class="wrapper">
-		<span class="value">
+		<span class="value mono">
 			{{ valBefore }}
 		</span>
 		<RangeInput
@@ -65,9 +65,15 @@ export default defineComponent({
 			v-model="value"
 			v-bind="options"
 			tooltip="none"
+			:dotSize="12"
+			:height="8"
+			:silent="true"
 		/>
-		<span v-if="valAfter" class="value">
+		<span v-if="valAfter" class="value mono">
 			{{ valAfter }}
+		</span>
+		<span v-else class="value mono">
+			{{ valBefore }}
 		</span>
 	</div>
 </template>
@@ -80,7 +86,7 @@ export default defineComponent({
 	@apply flex-grow;
 }
 .value {
-	@apply text-sm w-6 font-medium;
+	@apply w-6;
 
 	&:first-of-type {
 		@apply text-right;

@@ -65,6 +65,7 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
+@import '../../assets/scss/utils/mixins.scss';
 .sortable-chosen {
 	@apply opacity-60;
 }
@@ -74,14 +75,26 @@ export default defineComponent({
 }
 
 .textarea {
-	@apply w-full pr-14 text-4;
+	@apply w-full pr-14 text-3;
+
+	&:focus {
+		@apply text-4;
+	}
+	&:focus,
+	&:hover {
+		outline: 1px theme('colors.3') solid;
+	}
 }
 .drag-handle {
-	@apply absolute right-0 top-0 bottom-1 w-12 flex text-2;
+	@apply absolute right-0 top-0 bottom-1.5 w-12 flex text-2;
 	cursor: move;
 
 	svg {
 		@apply m-auto fill-current text-gray-darkest;
+	}
+
+	&:hover {
+		@apply lg:bg-2 lg:bg-opacity-20;
 	}
 }
 </style>

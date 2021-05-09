@@ -9,11 +9,11 @@ export default defineComponent({
 		},
 		textTrue: {
 			type: String,
-			default: 'True',
+			default: 'true',
 		},
 		textFalse: {
 			type: String,
-			default: 'False',
+			default: 'false',
 		},
 	},
 	setup(props, { emit }) {
@@ -33,7 +33,7 @@ export default defineComponent({
 </script>
 
 <template>
-	<div class="switch">
+	<div class="switch mono">
 		<button @click="change(true)" :class="{ active: value }">
 			{{ textTrue }}
 		</button>
@@ -48,12 +48,12 @@ export default defineComponent({
 	@apply flex;
 }
 button {
-	@apply w-12 h-6 text-sm font-medium border-2 border-1 text-2;
+	@apply w-12 h-6 text-sm font-medium border-2 border-3 text-3;
 	&:last-child {
 		@apply border-l-0;
 	}
 	&.active {
-		@apply bg-1 text-3;
+		@apply bg-3 text-1;
 	}
 }
 </style>

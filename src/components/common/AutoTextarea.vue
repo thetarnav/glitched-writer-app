@@ -3,6 +3,7 @@
 		:style="computedStyles"
 		v-model="val"
 		@focus="resize"
+		spellcheck="false"
 		rows="1"
 	></textarea>
 </template>
