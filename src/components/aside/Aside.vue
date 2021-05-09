@@ -61,7 +61,7 @@ header {
 }
 
 .content {
-	@apply bg-0 pb-20 pt-4;
+	@apply bg-0 pb-20;
 
 	&-wrapper {
 		@apply justify-self-stretch overflow-y-scroll;
@@ -99,7 +99,7 @@ header {
 }
 
 .aside-list {
-	@apply flex flex-col space-y-4;
+	@apply flex flex-col space-y-4 pt-4;
 
 	&--item {
 		@apply relative h-auto text-3;

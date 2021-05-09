@@ -52,14 +52,12 @@ export default defineComponent({
 		>
 			<div class="preset-header item-style">
 				<h6>{{ preset }} :</h6>
-				<div class="buttons">
-					<CustomButton @click="apply(preset)" class="btn--apply"
-						>Apply</CustomButton
-					>
-					<button @click="setActiveIndex(index)" class="btn--open">
-						<inline-svg :src="`./svg/chevron.svg`" />
-					</button>
-				</div>
+				<CustomButton @click="apply(preset)" class="btn--apply"
+					>Apply</CustomButton
+				>
+				<button @click="setActiveIndex(index)" class="btn--open">
+					<inline-svg :src="`./svg/chevron.svg`" />
+				</button>
 			</div>
 			<div class="preset-details item-style">
 				<div
@@ -95,13 +93,21 @@ export default defineComponent({
 </template>
 <style lang="scss" scoped>
 .preset-header {
+	@apply relative pr-14;
 	@apply flex justify-between items-center;
 }
-.buttons {
-	@apply flex space-x-3;
-}
 .btn--open {
-	@apply transform rotate-180;
+	@apply absolute right-0 inset-y-0 w-12;
+	@apply flex justify-center items-center;
+	@apply outline-none transition-colors;
+
+	&:hover {
+		@apply lg:bg-2 lg:bg-opacity-20;
+	}
+
+	svg {
+		@apply transform rotate-180;
+	}
 }
 .preset-details {
 	@apply border-t border-gray;
@@ -116,8 +122,8 @@ export default defineComponent({
 	}
 }
 .details-hidden {
-	.btn--open {
-		@apply transform rotate-0;
+	.btn--open svg {
+		@apply rotate-0;
 	}
 	.preset-details {
 		@apply hidden;
