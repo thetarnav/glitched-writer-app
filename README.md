@@ -1,27 +1,28 @@
-# Vue 3 + Typescript + Vite
+# [Glitched Writer Website](https://glitched-writer.site/)
 
-This template should help get you started developing with Vue 3 and Typescript in Vite.
+<!-- [![Mobile Mockup](https://user-images.githubusercontent.com/24491503/109354518-36785400-787e-11eb-9545-05c442e1c445.jpg)](https://glitched-writer.site/) -->
 
-## Recommended IDE Setup
+## About
 
-[VSCode](https://code.visualstudio.com/) + [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur). Make sure to enable `vetur.experimental.templateInterpolationService` in settings!
+A website dedicated to my other project: [Glitched Writer](https://github.com/thetarnav/glitched-writer) - an npm javascript module, for writing text with customizable effects.
 
-### If Using `<script setup>`
+## Technology used
 
-[`<script setup>`](https://github.com/vuejs/rfcs/pull/227) is a feature that is currently in RFC stage. To get proper IDE support for the syntax, use [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) instead of Vetur (and disable Vetur).
+-  ### Vue 3
+   -  with the heavy use of **Composition** & **Reactive Api**, to build global source-of-truth in the form of couple file-seperated modules. Instead of using vuex, because it lack full typescript support.
+-  ### Typescript
+-  ### TailwindCSS
+   -  SCSS was also used here and there, where tailwind couldn't be
+-  glitched-writer & vue-glitched-writer
 
-## Type Support For `.vue` Imports in TS
+## Design
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can use the following:
+I used Figma for both UX and UI Design. The visual style itself is mostly inspired by NieR: Automata UI and generally the rough style of data-heavy control panels. The goal was to create an interesting and fitting design with very limited pallete of colors: 5 shades of brownish gray.
 
-### If Using Volar
+## Links
 
-Run `Volar: Switch TS Plugin on/off` from VSCode command palette.
-
-### If Using Vetur
-
-1. Install and add `@vuedx/typescript-plugin-vue` to the [plugins section](https://www.typescriptlang.org/tsconfig#plugins) in `tsconfig.json`
-2. Delete `src/shims-vue.d.ts` as it is no longer needed to provide module info to Typescript
-3. Open `src/main.ts` in VSCode
-4. Open the VSCode command palette
-5. Search and run "Select TypeScript version" -> "Use workspace version"
+-  the website: [glitched-writer.site](https://glitched-writer.site/)
+-  design: [figma prototype](https://www.figma.com/proto/mmZMzNmHqjeciHqRDZUQoY/Glitched-Writer?page-id=110%3A4396&node-id=159%3A0&viewport=596%2C682%2C0.14049586653709412&scaling=min-zoom)
+-  npm module: [glitched-writer](https://www.npmjs.com/package/glitched-writer)
+-  author: [Damian Tarnawski](https://github.com/thetarnav)
+-  help: [Kacper Dąbrowski](https://github.com/kacper317)
