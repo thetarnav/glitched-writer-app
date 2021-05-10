@@ -95,6 +95,22 @@ export default defineComponent({
 					</li>
 				</ul>
 			</div>
+			<p class="text-sm leading-tight mt-5">
+				Website source code on
+				<a
+					href="https://github.com/thetarnav/glitched-writer-app"
+					target="_blank"
+					>github</a
+				>, <br />
+				created by
+				<a target="_blank" href="https://github.com/thetarnav"
+					>Damian Tarnawski</a
+				>,<br />
+				with the help of
+				<a target="_blank" href="https://github.com/kacper317"
+					>Kacper Dąbrowski</a
+				>.
+			</p>
 		</div>
 	</transition>
 	<div class="action-buttons">

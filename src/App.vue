@@ -5,9 +5,7 @@ import tabs from './modules/tabs'
 import Navbar from './components/nav/Navbar.vue'
 import TextCanvas from './components/text-canvas/TextCanvas.vue'
 const Aside = defineAsyncComponent(() => import('./components/aside/Aside.vue'))
-const ScreenLines = defineAsyncComponent(
-	() => import('./components/ScreenLines.vue'),
-)
+import ScreenLines from './components/ScreenLines.vue'
 
 export default defineComponent({
 	name: 'App',
@@ -35,7 +33,7 @@ export default defineComponent({
 		<header>
 			<!-- Logo -->
 			<div class="logo">
-				<inline-svg :src="`./svg/logo.svg`" class="w-5 mr-1" />
+				<!-- <inline-svg :src="`./svg/logo.svg`" class="w-5 mr-1" /> -->
 				<h6>Glitched Writer</h6>
 				<div class="mono absolute top-full mt-1 text-2">v2.0.22</div>
 			</div>
