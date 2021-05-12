@@ -1,4 +1,4 @@
-import { computed, reactive, ref, watch } from 'vue'
+import { computed, reactive } from 'vue'
 
 const initialTexts = [
 		'Welcome.',
@@ -25,5 +25,7 @@ export default function useQueue() {
 		}
 	}
 
-	return { queue, nextText, reset }
+	const resetIndex = () => (i = -1)
+
+	return { queue, nextText, reset, resetIndex }
 }

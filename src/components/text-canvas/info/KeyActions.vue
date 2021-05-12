@@ -1,11 +1,43 @@
+<script lang="ts">
+import { computed, defineComponent } from 'vue'
+import { writerStateAction } from '../../../modules/event-bus'
+import useState from '../../../modules/state'
+
+export default defineComponent({
+	setup() {
+		const { state } = useState(),
+			isPaused = computed(() => state.value === 'paused')
+
+		function togglePause() {
+			writerStateAction.emit('togglePause')
+		}
+
+		function reset() {
+			writerStateAction.emit('reset')
+		}
+
+		window.addEventListener('keypress', e => {
+			e.code === 'Space' && togglePause()
+			e.code === 'KeyR' && reset()
+		})
+
+		return {
+			togglePause,
+			reset,
+			isPaused,
+		}
+	},
+})
+</script>
+
 <template>
-	<div class="wrapper" v-if="false">
-		<a class="key-action mono">
-			<span>(Space)</span>
-			<span>Pause</span>
+	<div class="wrapper">
+		<a @click="togglePause" class="key-action mono">
+			<span class="key">(Space)</span>
+			<span>{{ isPaused ? 'Play' : 'Pause' }}</span>
 		</a>
-		<a class="key-action mono">
-			<span>(r)</span>
+		<a @click="reset" class="key-action mono">
+			<span class="key">(r)</span>
 			<span>Reset</span>
 		</a>
 	</div>
@@ -21,5 +53,9 @@
 	> *:first-child {
 		@apply mr-1;
 	}
+}
+
+.key {
+	@apply hidden lg:inline;
 }
 </style>

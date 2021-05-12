@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 import draggable from 'vuedraggable'
 import useQueue from '../../modules/queue'
 import tabs from '../../modules/tabs'

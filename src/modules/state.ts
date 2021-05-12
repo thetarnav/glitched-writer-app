@@ -4,7 +4,7 @@ import { debounce } from 'lodash'
 
 const state = reactive({
 	nGhosts: 0,
-	state: 'stale',
+	state: 'stale' as 'stale' | 'finished' | 'paused' | 'typing',
 	progressP: 0,
 	progressN: 0,
 	letters: [] as boolean[],
@@ -41,6 +41,8 @@ function onWriterStepRaw(string: string, data: WriterDataResponse) {
 		state.progressP = Math.round(p * 100)
 	}
 }
+
+export const pauseState = () => (state.state = 'paused')
 
 export default function useState() {
 	return {
