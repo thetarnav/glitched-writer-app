@@ -1,10 +1,10 @@
 <script lang="ts">
 import { defineComponent, ref, watch } from 'vue'
+import { ConstructorOptions, WriterDataResponse, wait } from 'glitched-writer'
 import GlitchedWriter from '../../../../vue-component/src/glitched-writer.vue'
-import { wait, ConstructorOptions, WriterDataResponse } from 'glitched-writer'
 import { options as modelOptions } from '../../modules/options'
 import useQueue from '../../modules/queue'
-import { updateState } from '../../modules/state'
+import { updateState, pauseState } from '../../modules/state'
 import { finishEmitter, writerStateAction } from '../../modules/event-bus'
 import { debounce } from 'lodash'
 import { lerp } from '../../assets/utils'
@@ -94,6 +94,7 @@ export default defineComponent({
 				doResetIndex = true
 			} else {
 				paused.value = !paused.value
+				paused.value && pauseState()
 			}
 		})
 
@@ -186,7 +187,8 @@ export default defineComponent({
 		@apply text-1 -z-1;
 	}
 
-	&.gw-writing {
+	&.gw-writing,
+	&.gw-paused {
 		animation: glitch-skew 1s steps(10, end) infinite alternate-reverse;
 
 		.gw-ghosts,

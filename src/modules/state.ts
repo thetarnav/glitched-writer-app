@@ -42,6 +42,8 @@ function onWriterStepRaw(string: string, data: WriterDataResponse) {
 	}
 }
 
+export const pauseState = () => (state.state = 'paused')
+
 export default function useState() {
 	return {
 		...toRefs(state),

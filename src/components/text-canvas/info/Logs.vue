@@ -2,7 +2,6 @@
 import { defineComponent, Ref, ref } from 'vue'
 import { finishEmitter } from '../../../modules/event-bus'
 import GlitchedWriter from '../../../../../vue-component/src/glitched-writer.vue'
-import { presets } from 'glitched-writer'
 
 interface Log {
 	text: string
@@ -36,14 +35,16 @@ export default defineComponent({
 
 <template>
 	<transition-group tag="ul" class="logs">
-		<li v-for="{ text, id } in logs" :key="id" class="mono">
-			<GlitchedWriter
-				:text="text"
-				preset="terminal"
-				:options="options"
-				appear
-			/>
-		</li>
+		<GlitchedWriter
+			tag="li"
+			v-for="{ text, id } in logs"
+			:key="id"
+			:text="text"
+			preset="terminal"
+			:options="options"
+			appear
+			class="mono"
+		/>
 	</transition-group>
 </template>
 
@@ -85,7 +86,7 @@ li {
 </style>
 
 <style lang="scss">
-.logs li {
+.logs {
 	.glitched-writer * {
 		font-weight: 500 !important;
 		font-style: normal !important;
