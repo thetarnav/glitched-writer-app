@@ -4,7 +4,7 @@ import { debounce } from 'lodash'
 
 const state = reactive({
 	nGhosts: 0,
-	state: 'stale',
+	state: 'stale' as 'stale' | 'finished' | 'paused' | 'typing',
 	progressP: 0,
 	progressN: 0,
 	letters: [] as boolean[],
