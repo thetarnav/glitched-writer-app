@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent, ref, watch } from 'vue'
-import GlitchedWriter from 'vue-glitched-writer'
+import GlitchedWriter from '../../../../vue-component/src/glitched-writer.vue'
 import { wait, ConstructorOptions, WriterDataResponse } from 'glitched-writer'
 import { options as modelOptions } from '../../modules/options'
 import useQueue from '../../modules/queue'
@@ -119,6 +119,7 @@ export default defineComponent({
 				:options="options"
 				@step="updateState"
 				@finish="afterFinish"
+				:silent="false"
 			/>
 		</h1>
 	</figure>

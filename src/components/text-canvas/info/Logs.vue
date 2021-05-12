@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent, Ref, ref } from 'vue'
 import { finishEmitter } from '../../../modules/event-bus'
-import GlitchedWriter from 'vue-glitched-writer'
+import GlitchedWriter from '../../../../../vue-component/src/glitched-writer.vue'
 import { presets } from 'glitched-writer'
 
 interface Log {
@@ -28,7 +28,7 @@ export default defineComponent({
 
 		return {
 			logs,
-			options: { ...presets.terminal, interval: [35, 40], html: true },
+			options: { interval: [35, 40], html: true },
 		}
 	},
 })
@@ -37,7 +37,12 @@ export default defineComponent({
 <template>
 	<transition-group tag="ul" class="logs">
 		<li v-for="{ text, id } in logs" :key="id" class="mono">
-			<GlitchedWriter :text="text" :options="options" appear />
+			<GlitchedWriter
+				:text="text"
+				preset="terminal"
+				:options="options"
+				appear
+			/>
 		</li>
 	</transition-group>
 </template>
