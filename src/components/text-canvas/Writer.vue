@@ -143,7 +143,6 @@ export default defineComponent({
 				:pause="paused"
 				@step="updateState"
 				@finish="afterFinish"
-				:silent="false"
 				appear
 			/>
 		</h1>
