@@ -13,7 +13,7 @@ A website dedicated to my other project: [Glitched Writer](https://github.com/th
 -  ### Typescript
 -  ### TailwindCSS
    -  SCSS was also used here and there, where tailwind couldn't be
--  glitched-writer & vue-glitched-writer
+-  [glitched-writer](https://www.npmjs.com/package/glitched-writer) & [vue-glitched-writer](https://www.npmjs.com/package/vue-glitched-writer)
 
 ## Design
 
