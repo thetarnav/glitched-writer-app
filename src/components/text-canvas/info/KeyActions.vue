@@ -17,8 +17,10 @@ export default defineComponent({
 		}
 
 		window.addEventListener('keypress', e => {
-			e.code === 'Space' && togglePause()
-			e.code === 'KeyR' && reset()
+			if (e.code === 'Space') {
+				e.preventDefault()
+				togglePause()
+			} else e.code === 'KeyR' && reset()
 		})
 
 		return {
