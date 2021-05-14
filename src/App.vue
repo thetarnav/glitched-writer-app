@@ -57,7 +57,7 @@ export default defineComponent({
 				</div>
 			</div>
 		</header>
-		<main class="middle-wrapper">
+		<div class="middle-wrapper">
 			<!-- Aside Panel -->
 			<transition name="fade">
 				<div v-if="isTabOpen">
@@ -66,8 +66,13 @@ export default defineComponent({
 			</transition>
 			<!-- Text Canvas -->
 			<TextCanvas />
-		</main>
+		</div>
 	</div>
+	<main class="opacity-0 pointer-events-none">
+		Glitched Writeris a lightweight text writing module, with highly
+		customizable settings. For decoding, glitching, decrypting, scrambling, or
+		simply spelling out text.
+	</main>
 	<!-- Screen Lines - Visual design elements -->
 	<ScreenLines />
 </template>
