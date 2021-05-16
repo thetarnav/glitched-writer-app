@@ -24,7 +24,7 @@
     "mitt": "^2.1.0",
     "query-string": "^7.0.0",
     "vue": "^3.0.5",
-    "vue-glitched-writer": "^1.1.4",
+    "vue-glitched-writer": "^1.1.5",
     "vue-inline-svg": "^3.0.0-beta.3",
     "vue-slider-component": "^4.0.0-beta.3",
     "vuedraggable": "^4.0.1"
