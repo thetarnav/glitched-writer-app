@@ -18,7 +18,7 @@
   "dependencies": {
     "animejs": "^3.2.1",
     "copy-to-clipboard": "^3.3.1",
-    "glitched-writer": "^2.0.24",
+    "glitched-writer": "^2.0.26",
     "lodash.debounce": "^4.0.8",
     "lodash.startcase": "^4.4.0",
     "mitt": "^2.1.0",

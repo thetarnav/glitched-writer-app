@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent, ref, watch } from 'vue'
-import { ConstructorOptions, WriterDataResponse, wait } from 'glitched-writer'
+import { CustomOptions, WriterDataResponse, wait } from 'glitched-writer'
 import GlitchedWriter from '../../../../vue-component/src/glitched-writer.vue'
 import { options as modelOptions } from '../../modules/options'
 import useQueue from '../../modules/queue'
@@ -109,7 +109,7 @@ export default defineComponent({
 	},
 	data() {
 		return {
-			options: {} as ConstructorOptions,
+			options: {} as CustomOptions,
 			debSetOptions: debounce(this.setOptions as () => void, 1000, {
 				maxWait: 1500,
 			}),
