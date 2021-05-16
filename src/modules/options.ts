@@ -22,7 +22,10 @@ Object.keys(rawPresets).forEach((presetName: any) => {
 		preset = rawPresets[key]
 
 	// Change "oneAtATime" from boolean type to number
-	if (typeof preset.oneAtATime !== 'number')
+	if (
+		typeof preset.oneAtATime === 'boolean' ||
+		typeof preset.oneAtATime === 'undefined'
+	)
 		preset.oneAtATime = preset.oneAtATime ? 1 : 0
 
 	// Parse "glyphs" from different types to only string
@@ -37,6 +40,7 @@ Object.keys(rawPresets).forEach((presetName: any) => {
 	delete preset.html
 	delete preset.letterize
 	delete preset.endless
+	delete preset.fps
 
 	presets[key] = {
 		...preset,
@@ -53,7 +57,9 @@ const defaultOptions: CompletePreset = {
 	html: true,
 	letterize: true,
 	endless: false,
+	fps: rawPresets.default.fps ?? 60,
 }
+
 const options = reactive({ ...defaultOptions, ...loadFromUrl() })
 
 /**
@@ -105,7 +111,7 @@ export const inputDetails: {
 		type: 'range',
 		range: [0, 300],
 	},
-	initialDelay: {
+	delay: {
 		type: 'range',
 		range: [0, 3000],
 	},
@@ -121,20 +127,24 @@ export const inputDetails: {
 		type: 'number',
 		range: [0, 20],
 	},
-	glyphs: {
-		type: 'string',
-	},
-	glyphsFromString: {
-		type: 'boolean',
-	},
 	oneAtATime: {
 		type: 'number',
 		range: [0, 10],
 	},
-	html: {
+	glyphs: {
+		type: 'string',
+	},
+	glyphsFromText: {
 		type: 'boolean',
 	},
+	mode: {
+		type: 'select',
+		list: ['matching', 'normal', 'erase', 'clear'],
+	},
 	fillSpace: {
+		type: 'boolean',
+	},
+	html: {
 		type: 'boolean',
 	},
 	letterize: {
@@ -143,8 +153,8 @@ export const inputDetails: {
 	endless: {
 		type: 'boolean',
 	},
-	startFrom: {
-		type: 'select',
-		list: ['matching', 'previous', 'erase'],
+	fps: {
+		type: 'number',
+		range: [14, 144],
 	},
 }

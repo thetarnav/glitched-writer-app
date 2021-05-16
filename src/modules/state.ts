@@ -10,7 +10,7 @@ const state = reactive({
 	letters: [] as boolean[],
 })
 
-export const updateState = debounce(onWriterStepRaw, 110, { maxWait: 220 })
+export const updateState = debounce(onWriterStepRaw, 80, { maxWait: 150 })
 
 function onWriterStepRaw(string: string, data: WriterDataResponse) {
 	// Set number of ghosts
@@ -28,18 +28,9 @@ function onWriterStepRaw(string: string, data: WriterDataResponse) {
 	}
 
 	// Set progress & letters
-	{
-		const { charTable } = data.writer,
-			nFinished = charTable.reduce(
-				(acc, char) => acc + (char.finished ? 1 : 0),
-				0,
-			),
-			p = nFinished / charTable.length
-
-		state.letters = charTable.map(char => char.finished)
-		state.progressN = nFinished
-		state.progressP = Math.round(p * 100)
-	}
+	state.letters = data.writer.charTable.map(char => char.finished)
+	state.progressN = data.state.progress.done
+	state.progressP = Math.round(data.state.progress.percent * 100)
 }
 
 export const pauseState = () => (state.state = 'paused')
