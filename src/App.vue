@@ -35,7 +35,7 @@ export default defineComponent({
 			<div class="logo">
 				<!-- <inline-svg :src="`./svg/logo.svg`" class="w-5 mr-1" /> -->
 				<h6>Glitched Writer</h6>
-				<div class="mono absolute top-full mt-1 text-2">v2.0.26</div>
+				<div class="mono absolute top-full mt-1 text-2">v2.0.29</div>
 			</div>
 			<!-- Navigation -->
 			<Navbar />

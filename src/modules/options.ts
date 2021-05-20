@@ -139,7 +139,7 @@ export const inputDetails: {
 	},
 	mode: {
 		type: 'select',
-		list: ['matching', 'normal', 'erase', 'clear'],
+		list: ['matching', 'normal', 'erase', 'erase_smart', 'clear'],
 	},
 	fillSpace: {
 		type: 'boolean',

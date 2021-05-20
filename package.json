@@ -18,13 +18,13 @@
   "dependencies": {
     "animejs": "^3.2.1",
     "copy-to-clipboard": "^3.3.1",
-    "glitched-writer": "^2.0.26",
+    "glitched-writer": "^2.0.29",
     "lodash.debounce": "^4.0.8",
     "lodash.startcase": "^4.4.0",
     "mitt": "^2.1.0",
     "query-string": "^7.0.0",
     "vue": "^3.0.5",
-    "vue-glitched-writer": "^1.1.5",
+    "vue-glitched-writer": "^1.1.7",
     "vue-inline-svg": "^3.0.0-beta.3",
     "vue-slider-component": "^4.0.0-beta.3",
     "vuedraggable": "^4.0.1"

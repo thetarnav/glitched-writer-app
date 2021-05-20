@@ -35,7 +35,7 @@ export default defineComponent({
 				afterFinish(string, data)
 				return
 			}
-			text.value = next
+			text.value = next.trim()
 		}
 
 		/**
@@ -175,6 +175,7 @@ export default defineComponent({
 
 	@apply relative;
 	@include antialiased;
+	will-change: contents;
 
 	&::after,
 	&::before {
@@ -183,7 +184,7 @@ export default defineComponent({
 		@apply text-2 font-semibold;
 	}
 	&::before {
-		@apply text-1 -z-1;
+		@apply text-2 -z-1;
 	}
 
 	&.gw-writing,
@@ -225,7 +226,7 @@ export default defineComponent({
 
 	@for $i from 0 through $steps {
 		#{percentage($i * 1 / $steps)} {
-			opacity: random(10) / 10;
+			opacity: 0.3 + random(7) / 10;
 		}
 	}
 }
